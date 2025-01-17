@@ -1,0 +1,66 @@
+<p>UPPMAX has <strong>96 licenses</strong> (<em>one license per (MPI) process</em>) that allows you to debug programs running in parallel with up to 6 nodes on 16 cores or any other combination. The licenses are shared between all users that are in active debugging session.</p>
+
+<p>To use the graphical user interface (GUI) make sure you have X11 forwarded when connecting to Tintin.</p>
+
+<div>
+<pre>
+&#36; ssh -Y rackham.uppmax.uu.se</pre>
+</div>
+
+<p>To use the program load the ddt module from you command line.</p>
+
+<div>
+<pre>
+&#36; module load ddt</pre>
+</div>
+
+<p>Make sure you have compiled your code with debugging flag options!</p>
+
+<p>To start the program run:</p>
+
+<div>
+<pre>
+&#36; ddt
+&nbsp;
+or
+&nbsp;
+&#36; ddt .<strong>/</strong>myprogram</pre>
+</div>
+
+<h3>Debugging Multithreaded programs:</h3>
+
+<p>Start an interactive job with multiple cores (e.g. &quot;interactive -p core -n 20 -A snicXYZ -t 04:00:00&quot;) before starting DDT. In the run window, select the OpenMP box. You can change the number of OpenMP threads directly in the DDT window before running.</p>
+
+<h3>Debugging MPI programs:</h3>
+
+<p>To be able to debug MPI program select MPI option as well as the &quot;Submit to Queue&quot; option,&nbsp;and then click on &quot;Change&quot; to select submission script configuration for Rackham and provide the job specific options.</p>
+
+<p><img alt="" src="DownloadAsset.action?contentId=555128&amp;languageId=1&amp;assetKey=DDTScreenshot-6-412x427" style="border-style:solid; border-width:0px" /></p>
+
+<p><strong>System&gt;</strong> select &quot;Auto-Detect&quot; for &quot;MPI/UPC Implementation&quot; and tick &quot;Create Root and Workers group automatically&quot;.</p>
+
+<p><img alt="" src="DownloadAsset.action?contentId=555128&amp;languageId=1&amp;assetKey=DDTScreenshot-4-413x252" style="border-style:solid; border-width:0px" /></p>
+
+<p><strong>Job Submission&gt;</strong> Browse and select &quot;/sw/comp/ddt/7.0/templates/rackham-core.qtf&quot; in the filed &quot;Submission template file:&quot;. Make sure that &quot;Quick Restart&quot; is also ticked. This will allow you to restart your program without cancelling the allocated time and allocating it again. (There is also a rackham-node.qtf in the same directory as the rackham-core.qtf configuration, this will allow you to submit the node and devcore partitions as well.)</p>
+
+<p><img alt="" src="DownloadAsset.action?contentId=555128&amp;languageId=1&amp;assetKey=DDTScreenshot-7-400x246" style="border-style:solid; border-width:0px" /></p>
+
+<p>&quot;Edit Queue Submission Parameters...&quot; to specify Partition, Project and requested time. Failing to provide project number will cause failures in the submission process.</p>
+
+<p><img alt="" src="DownloadAsset.action?contentId=555128&amp;languageId=1&amp;assetKey=DDTScreenshot-8-247x209" style="border-style:solid; border-width:0px" /></p>
+
+<p>On the main configuration window the button &quot;Run&quot; will change to &quot;Submit&quot;. Click on this button to submit your debugging session to the queue manager.</p>
+
+<p>If you enable &quot;Memory debugging&quot;, click the &quot;Details&quot; button and&nbsp;tick &quot;Preload the memory debugging library&quot; and select &quot;C/Fortran threads&quot; in the &quot;Language:&quot; field. Read the manual for more detail on the other options in this panel.</p>
+
+<p><img alt="" src="DownloadAsset.action?contentId=555128&amp;languageId=1&amp;assetKey=DDTScreenshot-9-333x338" style="border-style:solid; border-width:0px" /></p>
+
+<p></p>
+
+<p><strong>Useful links</strong></p>
+
+<p><a href="http://www.allinea.com/products/ddt/">Allinea DDT home page</a></p>
+
+<p><a href="http://www.allinea.com/products/ddt-support/">Support, known issues and release history</a></p>
+
+<p><a href="http://content.allinea.com/downloads/userguide.pdf">User Guide</a></p>

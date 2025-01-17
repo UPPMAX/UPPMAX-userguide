@@ -1,0 +1,298 @@
+
+<h2>Introduction</h2>
+
+<p>The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed to serve both operational forecasting and atmospheric research needs.</p>
+
+<p><a href="https://www.mmm.ucar.edu/weather-research-and-forecasting-model">Model home page</a></p>
+
+<p><a href="https://www2.mmm.ucar.edu/wrf/users/">ARW branch page</a></p>
+
+<p>WRF Preprocessing System (WPS). The Weather Research and Forecasting (WRF) Model is a next-generation mesoscale numerical weather prediction system designed to serve both operational forecasting and atmospheric research needs.</p>
+
+<p>WRF is installed as modules for version 4.1.3 and compiled with INTEL and parallelized for distributed memory (dmpar) or hybrid shared and distributed memory (sm+dm). These are available as:</p>
+
+<ul>
+	<li>WRF/4.1.3-dmpar&nbsp;&nbsp;&nbsp;&nbsp; default as WRF/4.1.3</li>
+	<li>WRF/4.1.3-dm+sm&nbsp;&nbsp;&nbsp;&nbsp;</li>
+</ul>
+
+<p>WPS is installed as version 4.1 and available as:</p>
+
+<ul>
+	<li>WPS/4.1</li>
+</ul>
+
+<p>There are WPS_GEOG data available.<br />
+Set the path in namelist.wps to:&nbsp;<br />
+<br />
+'geog_data_path = '/sw/data/WPS-geog/4/rackham/WPS_GEOG''</p>
+
+<p>Corine and metria data are included in the WPS_GEOG directory.<br />
+In /sw/data/WPS-geog/4/rackham you'll find GEOGRID.TBL.ARW.corine_metria that hopefully works. Copy to your WPS/GEOGRID directory and then link to GEOGRID.TBL file.<br />
+It may not work for a large domain. If so, either modify TBL file or use in inner domains only.</p>
+
+<p></p>
+
+<p>To analyse the WRF output on the cluster you can use Vapor, NCL (module called as <em>NCL-graphics</em>) or wrf-python (module called as <em>wrf-python</em>).&nbsp;For details on how, please confer the <a href="https://www.vapor.ucar.edu/">Vapor</a>,&nbsp;<a href="https://www.ncl.ucar.edu/">NCL</a>&nbsp;or <a href="https://wrf-python.readthedocs.io/en/latest/">wrf-python</a> webpages.</p>
+
+<h2>Get started</h2>
+
+<p>This section assumes that you are already familiar in running WRF. If not, please check the <a href="https://www2.mmm.ucar.edu/wrf/OnLineTutorial/compilation_tutorial.php">tutorial</a>, where you can at least omit the first 5 buttons and go directly to the last button, or depending on your needs, also check the &ldquo;Static geography data&rdquo; and &ldquo;Real-time data&rdquo;.</p>
+
+<p>When running WRF/WPS you would like your own settings for the model to run and not to interfere with other users. Therefore, you need to set up a local or project directory (e.g. 'WRF') and work from there like for a local installation. You also need some of the content from the central installation. Follow these steps:</p>
+
+<ol>
+	<li>Create a directory where you plan to have your input and result files.</li>
+	<li>Standing in this directory copy the all or some of the following directories from the central installation.
+	<ol>
+		<li>Run directory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for real runs
+		<pre>
+cp -r /sw/EasyBuild/rackham/software/WRF/4.1.3-intel-2019b-dmpar/WRF-4.1.3/run .</pre>
+		You can remove *.exe files in this <em>run </em>directory because the module files shall be used.</li>
+		<li>WPS directory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if input data has to be prepared
+		<pre>
+cp -r /sw/EasyBuild/rackham/software/WPS/4.1-intel-2019b-dmpar/WPS-4.1 .</pre>
+		You can remove *.exe files in the new directory because the module files shall be used.</li>
+		<li>Test directory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for ideal runs
+		<pre>
+cp -r /sw/EasyBuild/rackham/software/WRF/4.1.3-intel-2019b-dmpar/WRF-4.1.3/test .</pre>
+		You can remove *.exe files because the module files shall be used.</li>
+	</ol>
+	</li>
+	<li>When WRF or WPS modules are loaded you can run with &ldquo;ungrib.exe&rdquo; or for instance &ldquo;wrf.exe&rdquo;, i.e. without the &ldquo;./&rdquo;.</li>
+	<li>Normally you can run <em>ungrib.exe</em>, <em>geogrid.exe</em> and <em>real.exe</em> and, if not too long period, <em>metgrid.exe</em>, in the command line or in interactive mode.</li>
+	<li>wrf.exe has to be run on the compute nodes. Make a batch script, see template below:</li>
+</ol>
+
+<p style="margin-left:18.0pt"></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<p></p>
+
+<div>
+<blockquote>
+<pre>
+&#35;!/bin/bash
+&#35;SBATCH -J 
+&#35;SBATCH --mail-user 
+&#35;SBATCH --mail-type=ALL 
+&#35;SBATCH -t 0-01:00:0 
+&#35;set wall time c. 50% higher than expected 
+&#35;SBATCH -A 
+&#35; 
+&#35;SBATCH -n 40 -p node 
+&#35;this gives 40 cores on 2 nodes 
+module load WRF/4.1.3-dmpar 
+&#35; With PMI jobs on very many nodes starts more efficiently. 
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so 
+export I_MPI_PMI2=yes 
+srun -n 40 --mpi=pmi2 wrf.exe</pre>
+
+<p></p>
+</blockquote>
+
+<p></p>
+
+<h2>Running smpar+dmpar</h2>
+
+<p>Wrf compiled for Hybrid Shared + Distributed memory (OpenMP+MPI) can be more efficient than dmpar only. With good settings it runs approximately 30% faster and similarly less resources.</p>
+
+<p>To load this module type:</p>
+
+<div>
+<blockquote>
+<pre>
+module load WRF/4.1.3-dm+sm</pre>
+
+<p></p>
+</blockquote>
+
+<p>The submit script can look like this:</p>
+
+<div>
+<blockquote>
+<pre>
+&#35;!/bin/bash
+&#35;SBATCH -J &lt;jobname&gt;
+&#35;SBATCH --mail-user &lt;email address&gt;
+&#35;SBATCH --mail-type=ALL
+&#35;SBATCH -t 0-01:00:0&nbsp;&nbsp;&nbsp; &#35;set wall time c. 50% higher than expected
+&#35;SBATCH -A &lt;project name&gt;
+&#35;
+&#35;SBATCH -N 2&nbsp; &#35;&#35; case with 2 nodes = 40 cores on Rackham
+&#35;SBATCH -n 8&nbsp; &#35;&#35; make sure that n x c = (cores per node) x N
+&#35;SBATCH -c 5
+&#35;SBATCH --exclusive
+&#35; We want to run OpenMP on one unit (the cores that share a memory channel, 10 on Rackham) or a part of it.
+&#35; So, for Rackham, choose -c to be either 10, 5 or 2.
+&#35; c = 5 seems to be the most efficient!
+&#35; Set flags below!
+nt=1
+if [ -n &quot;&#36;SLURM_CPUS_PER_TASK&quot; ]; then
+&nbsp; nt=&#36;SLURM_CPUS_PER_TASK
+fi
+ml purge &gt; /dev/null 2&gt;&amp;1 &#35; Clean the environment
+ml WRF/4.1.3-dm+sm
+export OMP_NUM_THREADS=&#36;nt
+export I_MPI_PIN_DOMAIN=omp
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so
+export I_MPI_PMI2=yes
+srun -n 8 --mpi=pmi2 wrf.exe</pre>
+</blockquote>
+
+<h2>Local installation with module dependencies</h2>
+
+<p>If you would like to change in the FORTRAN code for physics or just want the latest version you can install locally but with the dependencies from the modules</p>
+
+<h3>Step 1:&nbsp;WRF Source Code Registration and Download</h3>
+
+<ol>
+	<li><a href="https://www2.mmm.ucar.edu/wrf/users/download/wrf-regist_or_download.php">Register and download</a></li>
+	<li>Identify download urls you need (on Github for v4 and higher)
+	<ol>
+		<li>WRF</li>
+		<li>WPS</li>
+		<li>Other?</li>
+	</ol>
+	</li>
+	<li>In folder of your choice at UPPMAX:
+	<ol>
+		<li>'wget &lt;download url&gt;'</li>
+	</ol>
+	</li>
+	<li>'tar zxvf &lt;file&gt;' .</li>
+</ol>
+
+<h3>Step 2:&nbsp;Configure and compile</h3>
+
+<div></div>
+
+<div>Create and set the environment in a SOURCEME file, see example below for a intel-dmpar build. Loading module WRF sets most of the environment but some variables have different names in configure file. Examples below assumes <em>dmpar</em>, but can be interchanged to <em>dm+sm</em> for hybrid build.</div>
+
+<div>
+<div>
+<blockquote>
+<pre>
+&#35;!/bin/bash
+
+module load&nbsp;WRF/4.1.3-dmpar
+
+module list
+
+export WRF_EM_CORE=1
+
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+
+export NETCDFPATH=&#36;NETCDF
+
+export HDF5PATH=&#36;HDF5_DIR
+
+export HDF5=&#36;HDF5_DIR&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</pre>
+
+<p></p>
+</blockquote>
+</div>
+
+<div>Then</div>
+
+<blockquote>
+<pre>
+source SOURCEME
+
+./configure</pre>
+</blockquote>
+
+<div></div>
+
+<div>Choose intel and dmpar (15) or other, depending on WRF version and parallelization.</div>
+
+<div>When finished it may complain about not finding netcdf.inc file. This is solved below as you have to modify the <em>configure.wrf</em> file.</div>
+
+<div></div>
+
+<blockquote>
+<div>&bull;Intelmpi settings (for dmpar)</div>
+
+<div>
+<pre>
+DM_FC&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=&nbsp; &nbsp; &nbsp; &nbsp; mpiifort
+
+DM_CC&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=&nbsp; &nbsp; &nbsp; &nbsp; mpiicc -DMPI2_SUPPORT
+
+&#35;DM_FC&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=&nbsp; &nbsp; &nbsp; &nbsp;mpif90 -f90=&#36;(SFC)
+
+&#35;DM_CC&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=&nbsp; &nbsp; &nbsp; &nbsp;mpicc -cc=&#36;(SCC)</pre>
+</div>
+
+<div></div>
+
+<div>
+<div>&bull;Netcdf-fortran paths</div>
+
+<div>
+<pre>
+LIB_EXTERNAL&nbsp; &nbsp; = add&nbsp; flags &quot;-&#36;(NETCDFFPATH)/lib -lnetcdff -lnetcdf&quot;&nbsp;&nbsp;(let line end with &quot;\&quot;)
+INCLUDE_MODULES =&nbsp; &nbsp; add flag&nbsp;&quot;-I&#36;(NETCDFFPATH)/include&quot; (let line end with &quot;\&quot;)</pre>
+</div>
+Add the line below close to&nbsp;&nbsp;NETCDFPATH:
+
+<div>
+<pre>
+NETCDFFPATH&nbsp; &nbsp; &nbsp;=&nbsp; &nbsp; &#36;(NETCDFF)</pre>
+</div>
+
+<p></p>
+</div>
+</blockquote>
+Then:
+
+<blockquote>
+<pre>
+./compile em_real</pre>
+</blockquote>
+
+<p></p>
+When you have made modification of the code and once configure.wrf is created, just
+
+<blockquote>
+<pre>
+source SOURCEME </pre>
+</blockquote>
+and run:
+
+<blockquote>
+<pre>
+./compile em_real </pre>
+</blockquote>
+
+<p></p>
+
+<div>
+<h3>Running</h3>
+
+<div>Batch script should include:</div>
+
+<blockquote>
+<div>
+<pre>
+module load WRF/4.1.3-dmpar
+
+export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so
+
+export I_MPI_PMI2=yes
+
+srun -n 40 --mpi=pmi2 ./wrf.exe&nbsp; &nbsp; &nbsp;&#35;Note &rdquo;./&rdquo;, otherwise &rdquo;module version of wrf.exe&rdquo; is used</pre>
+</div>
+</blockquote>
+
+<div></div>
+</div>
+</div>
+</div>
+</div>
+</div>

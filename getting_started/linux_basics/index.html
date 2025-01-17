@@ -1,0 +1,4046 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../linux/">
+      
+      
+        <link rel="next" href="../../cluster_guides/uppmax_cluster/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Basic Linux commands - UPPMAX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#basic-toolkit" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="UPPMAX Documentation" class="md-header__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UPPMAX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basic Linux commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../get_started/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cluster_guides/uppmax_cluster/" class="md-tabs__link">
+          
+  
+  Cluster user guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../software/overview/" class="md-tabs__link">
+          
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../databases/overview/" class="md-tabs__link">
+          
+  
+  Databases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../support/" class="md-tabs__link">
+        
+  
+    
+  
+  Support
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-tabs__link">
+        
+  
+    
+  
+  Courses and workshops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-tabs__link">
+        
+  
+    
+  
+  Back to UPPMAX main page
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UPPMAX Documentation" class="md-nav__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    UPPMAX Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project_apply/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Applying for a Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Accessing UPPMAX
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing UPPMAX
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../get_inside_sunet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get inside the university networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../login_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../login_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../login_snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../login_dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Linux tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Linux tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Basic Linux commands
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Basic Linux commands
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#we-will-cover-these-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      We will cover these commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      File system Navigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-create-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy, Create, Move
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deleting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Help
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-get-wild-with-wildcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let’s get wild with Wildcards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster user guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster user guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/uppmax_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The UPPMAX clusters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://docs.uppmax.uu.se/cluster_guides/system_usage/system_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Clusters
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Clusters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General cluster tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            General cluster tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/start_interactive_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Start an interactive node
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slurm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/project_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing your project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running jobs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Running jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/optimizing_jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checking and optimizing jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/runtime_tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/storage_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage and compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data transfer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Data transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel_migration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/webexport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webexport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/software-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/text_editors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text editors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software-specific documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software-specific documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chemistry/physics/atmosphere
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chemistry/physics/atmosphere
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/games_us/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAMESS_US
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/gaussian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gaussian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/openmolcas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Molcas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/wrf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrated development environments (IDE)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Integrated development environments (IDE)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/jupyter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/rstudio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RStudio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/vscodium/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCodium
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_3" id="__nav_4_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Life Science
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Life Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/beast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/beast2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/cram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/igv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IGV
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/metontiime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetONTIIME
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/tracer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machine Learning and AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning and AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/nvidia-deep-learning-frameworks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVIDIA DLF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/tensorflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TensorFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/whisper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Whisper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming languages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Programming languages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/matlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MATLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/r/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Misc tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/allinea-ddt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Allinea DDT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/darsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    darsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/jobstats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jobstats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/projplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    projplot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/rclone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rclone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/sftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SFTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/thinlinc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinLinc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installing and development
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Installing and development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing with conda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compiling_serial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling serial code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/compiling_parallel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling parallel code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/debuggers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debuggers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/nextflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nextflow & nf-core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/profilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Profilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/singularity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singularity/Apptainer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../software/spack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Spack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Databases
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Databases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/blast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BLAST databases available locally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/ncbi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NCBI taxonomy databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/diamond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DIAMOND protein alignment databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/reference_genomes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference genomes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/1000-genome_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1000-genome project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/simons_genome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simons Genome Diversity Project datasets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/other_local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other bioinformatics-oriented local data resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Courses and workshops
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Back to UPPMAX main page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#we-will-cover-these-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      We will cover these commands
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-system-navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      File system Navigation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-create-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy, Create, Move
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#archiving" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archiving
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deleting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deleting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Help
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lets-get-wild-with-wildcards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let’s get wild with Wildcards
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reading files
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      File permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#changing-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Changing permissions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#links" class="md-nav__link">
+    <span class="md-ellipsis">
+      Links
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/blob/main/docs/getting_started/linux_basics.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/raw/main/docs/getting_started/linux_basics.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<div><h1 id="basic-toolkit">Basic toolkit<a class="headerlink" href="#basic-toolkit" title="Anchor link to this section for reference">¶</a></h1>
+<p><img alt="Caption" src="../img/terminal.png"></p>
+<div class="admonition objectives">
+<p class="admonition-title">Objectives</p>
+<ul>
+<li>Let's dig into the most important BASH commands</li>
+<li>We'll do a type-along session</li>
+</ul>
+</div>
+<details class="- question">
+<summary>Like videos?</summary>
+<p>Below usage of the command line is discussed in text.
+If you prefer video, <a href="https://youtu.be/kjqLAx2bgJI">here</a>
+is how to use the command-line on the UPPMAX Bianca cluster.</p>
+</details>
+<h2 id="we-will-cover-these-commands">We will cover these commands<a class="headerlink" href="#we-will-cover-these-commands" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="navigation-and-file-management">Navigation and file management<a class="headerlink" href="#navigation-and-file-management" title="Anchor link to this section for reference">¶</a></h3>
+<ol>
+<li><code>pwd</code>    present directory</li>
+<li><code>ls</code>   list content</li>
+<li><code>cd</code>   change directory</li>
+<li><code>mkdir</code>   make directory</li>
+<li><code>cp</code>   copy</li>
+<li><code>scp</code>   securely remotely copy</li>
+<li><code>mv</code>   move</li>
+<li><code>rm</code>   remove</li>
+<li><code>rmdir</code>   remove empty directory</li>
+</ol>
+<h3 id="read-files-and-change-file-properties">Read files and change file properties<a class="headerlink" href="#read-files-and-change-file-properties" title="Anchor link to this section for reference">¶</a></h3>
+<ol>
+<li><code>cat</code>   print content on screen</li>
+<li><code>head</code>   print first part</li>
+<li><code>tail</code>   print last part</li>
+<li><code>less</code>   browse content</li>
+<li><code>tar</code>   compress or extract file</li>
+<li><code>chmod</code>   change file permissions</li>
+<li><code>man</code>   info about a command</li>
+</ol>
+<h2 id="file-system-navigation">File system Navigation<a class="headerlink" href="#file-system-navigation" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="pwd-where-are-you-now-print-name-of-currentworking-directory">pwd — where are you now? “Print name of current/Working Directory`<a class="headerlink" href="#pwd-where-are-you-now-print-name-of-currentworking-directory" title="Anchor link to this section for reference">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="go">pwd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="go">pwd -P</span>
+</code></pre></div>
+<ul>
+<li><code>-P</code> gives you the physical path,<ul>
+<li>ignores how you got there</li>
+</ul>
+</li>
+</ul>
+<h3 id="ls-list-directory-contents">ls — list directory contents<a class="headerlink" href="#ls-list-directory-contents" title="Anchor link to this section for reference">¶</a></h3>
+<p>Type <code>ls</code> to display the contents of the current directory.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="go">ls -a</span>
+</code></pre></div>
+<p><code>-a</code> also shows hidden files and directories.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="go">ls -l</span>
+</code></pre></div>
+<p><code>-l</code> gives you listed and detailed information.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="go">ls -lt</span>
+</code></pre></div>
+<p><code>-lt</code> sorts things by time modified.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="go">ls -lrt</span>
+</code></pre></div>
+<p><code>-r</code> gives reversed order, so in this case newest in last line.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="go">man ls</span>
+</code></pre></div>
+<ul>
+<li>for complete information about a command.</li>
+<li>TIP: <code>-$ man &lt;command&gt;</code> works for almost any command!<ul>
+<li>scroll with arrows and quit with <code>q</code>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="cd-change-the-shell-working-directory">cd — Change the shell working Directory<a class="headerlink" href="#cd-change-the-shell-working-directory" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>To change directory, use <code>cd &lt;target&gt;</code></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>Some of following steps will only be available for the Introduction course members.</li>
+<li>These involve the `/proj/introtouppmax`` directory</li>
+</ul>
+</div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="go">cd /proj/introtouppmax</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="go">pwd</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="go">ls</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="go">cd labs</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="go">pwd</span>
+</code></pre></div>
+<div class="admonition challenge experiment with cd">
+<p class="admonition-title">Challenge</p>
+<ul>
+<li>Experiment with <code>cd</code></li>
+<li>Try adding <code>&lt;spaces&gt;</code> or extra <code>/</code> in various places</li>
+<li>
+<p>Use <em>tab completion</em> to avoid typos and typing <code>ls</code> a lot</p>
+</li>
+<li>
+<p>Figure out the use of the following:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>-
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>..
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gp">$ </span><span class="nb">cd</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="gp">$ </span><span class="nb">cd</span><span class="w"> </span>~
+</code></pre></div>
+<details class="solution">
+<summary>Solution</summary>
+<ul>
+<li>
+<p><code>cd -</code> : goes back to your last directory</p>
+</li>
+<li>
+<p><code>cd ..</code> : goes a level up in the hierarchy</p>
+</li>
+<li>
+<p><code>cd</code> : goes to home directory</p>
+</li>
+<li>
+<p><code>cd ~</code> : also goes to home directory</p>
+</li>
+</ul>
+</details>
+</div>
+<h2 id="copy-create-move">Copy, Create, Move<a class="headerlink" href="#copy-create-move" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="mkdir-make-directories">mkdir — make directories<a class="headerlink" href="#mkdir-make-directories" title="Anchor link to this section for reference">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>Make sure you’re in your home directory by <code>cd ~</code></li>
+</ul>
+</div>
+<ul>
+<li>Create a new directory <code>uppmax-intro</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="go">cd ~</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="go">mkdir uppmax-intro</span>
+</code></pre></div>
+<ul>
+<li>Go in there:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="go">cd uppmax-intro/</span>
+</code></pre></div>
+<h3 id="cp-copy-files-and-directories">cp — copy files and directories<a class="headerlink" href="#cp-copy-files-and-directories" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>Copy files with: <code>cp &lt;source&gt; &lt;target&gt;</code></li>
+<li>Set target to <code>.</code> to keep name and to point at present directory.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="go">cp /proj/introtouppmax/labs/linux_tutorial/ .</span>
+</code></pre></div>
+<ul>
+<li>Well, that didn’t work. What does the error say?</li>
+<li>So... try</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="go">cp -r /proj/introtouppmax/labs/linux_tutorial/ .</span>
+</code></pre></div>
+<p><code>-r</code> is for recursive, meaning including files and subdirectories!</p>
+<ul>
+<li>Move to your just created <code>linux_tutorial/</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="go">cd linux_tutorial</span>
+</code></pre></div>
+<ul>
+<li>Make a copy of the file <code>newfile</code> in the same directory:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="go">cp newfile copyfile</span>
+</code></pre></div>
+<h3 id="scp-secure-copy-remote-file-copy-program">scp — secure copy (remote file copy program)<a class="headerlink" href="#scp-secure-copy-remote-file-copy-program" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>Linux/MacOS: To copy data to/from Rackham, you can use <code>scp</code> <strong>from the <a href="../../software/terminal/">terminal</a> on your local machine</strong>:</li>
+</ul>
+<h4 id="download-from-rackham">Download from Rackham<a class="headerlink" href="#download-from-rackham" title="Anchor link to this section for reference">¶</a></h4>
+<ul>
+<li>Download</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>bob@rackham.uppmax.uu.se:~/mydata<span class="w"> </span>copyofmydata
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>bob@rackham.uppmax.uu.se:~/mydata<span class="w"> </span>.<span class="w">                      </span><span class="c1"># (keeping file name)</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><strong>Download the file <code>first.txt</code></strong></p>
+<ul>
+<li>In your local terminal:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>&lt;username&gt;@rackham.uppmax.uu.se:~/first.txt<span class="w"> </span>.<span class="w">                      </span><span class="c1"># (keeping file name)</span>
+</code></pre></div>
+</div>
+<h4 id="upload-to-rackham">Upload to Rackham<a class="headerlink" href="#upload-to-rackham" title="Anchor link to this section for reference">¶</a></h4>
+<ul>
+<li>Upload from present directory on local machine to your home directory on cluster.<ul>
+<li>Example:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>myinput<span class="w"> </span>bob@rackham.uppmax.uu.se:~/copyofmyinput
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>myinput<span class="w"> </span>bob@rackham.uppmax.uu.se:~/<span class="w">                      </span><span class="c1"># (keeping filename)</span>
+</code></pre></div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><strong>upload the file <code>first.txt</code> after some modification</strong></p>
+<ol>
+<li>Open the file you just downloaded in any editor.</li>
+<li>Add a row, like: <code>A new row</code></li>
+<li>Save and quit.</li>
+<li>Upload your file but save it as <code>second.txt</code> on Rackham. In your local terminal:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="gp">[bob@macbook]$ </span>scp<span class="w"> </span>first.txt<span class="w"> </span>&lt;username&gt;@rackham.uppmax.uu.se:~/second.txt<span class="w">                     </span><span class="c1"># (new filename)</span>
+</code></pre></div>
+</div>
+<div class="admonition see also">
+<p class="admonition-title">See</p>
+<ul>
+<li><a href="../../software/rackham_file_transfer_using_scp/">Rackham file transfer using scp</a></li>
+</ul>
+</div>
+<h3 id="mv-moverename-file">mv — move/rename file<a class="headerlink" href="#mv-moverename-file" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>Moving files works just like copying files:</li>
+<li><code>mv &lt;source&gt; &lt;target&gt;</code></li>
+<li>Move the copy you just made to another place:</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="go">mv copyfile ../</span>
+</code></pre></div>
+<ul>
+<li>Rename it.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="go">mv ../copyfile ../renamedfile</span>
+</code></pre></div>
+<h2 id="archiving">Archiving<a class="headerlink" href="#archiving" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="tar-archiving-and-compression">tar — archiving and compression<a class="headerlink" href="#tar-archiving-and-compression" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>We’re going to need more files. Let's extract the tar.gz file (tared and gzipped file)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="go">tar -vxzf files.tar.gz</span>
+</code></pre></div>
+<ul>
+<li>The flags mean:
+        - <strong><em>v</em>*erbosely
+        - e</strong>x<strong>tract
+        - g</strong>z<strong>ipped
+        - </strong>f**ilename</li>
+<li>Order of flags may matter!<ul>
+<li><code>f</code> should be in the start or in the end!</li>
+</ul>
+</li>
+<li>You should see a list of files being extracted</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>To compress use the flag <code>-c</code>instead of <code>-x</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="gp">$ </span>tar<span class="w"> </span>-czfv<span class="w"> </span>&lt;tar<span class="w"> </span>file&gt;<span class="w"> </span>&lt;path/to/directory/file<span class="o">(</span>s<span class="o">)</span>-or-directory&gt;
+</code></pre></div>
+</div>
+<h2 id="deleting">Deleting<a class="headerlink" href="#deleting" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="rm-delete-files-or-directories">rm — delete files  or directories<a class="headerlink" href="#rm-delete-files-or-directories" title="Anchor link to this section for reference">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><strong>Tip: make "rm" ask if you really want to erase:</strong></li>
+<li>Within a session: Type in the command prompt</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="go">alias rm='rm -i'</span>
+</code></pre></div>
+<ul>
+<li>Override asking with</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="go">rm -f &lt;&gt;</span>
+</code></pre></div>
+<ul>
+<li>Do you want this to be the case everytime you start a new session?<ul>
+<li>Edit file <code>.bashrc</code> in /home directory by adding the above alias line on any but the first line.</li>
+</ul>
+</li>
+<li>These steps will also work for <code>mv</code> and <code>cp</code>.</li>
+</ul>
+</div>
+<ul>
+<li>
+<p>Deleting files works just like copying or moving them: <code>rm &lt;target&gt;</code></p>
+<ul>
+<li>Try it out:</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="go">rm ../renamedfile</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="go">rm this_is_empty</span>
+</code></pre></div>
+<ul>
+<li>hmmmm...</li>
+</ul>
+<h3 id="rmdir-delete-an-empty-directory">rmdir — delete an empty directory<a class="headerlink" href="#rmdir-delete-an-empty-directory" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>We need another command to delete directories</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="go">rmdir this_is_empty</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="go">rmdir this_has_a_file</span>
+</code></pre></div>
+<ul>
+<li>
+<p>Problem again??</p>
+</li>
+<li>
+<p>Is there a way to use rm to delete directories?</p>
+</li>
+</ul>
+<div class="admonition solution">
+<p class="admonition-title">Solution</p>
+<ul>
+<li>Recursive commands <code>-r</code> are applied to directories and their contents</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="gp">$ </span>rm<span class="w"> </span>-r<span class="w"> </span>this_has_a_file
+</code></pre></div>
+</div>
+<h2 id="help">Help<a class="headerlink" href="#help" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="man-manual-look-up-the-right-flags">man — manual, look up the right flags<a class="headerlink" href="#man-manual-look-up-the-right-flags" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>Nobody can remember whether it’s <code>-R</code> or <code>-r</code> for recursive, or if <code>-f</code> lets you choose a file or forces an action.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="go">man ls</span>
+</code></pre></div>
+<ul>
+<li>shows you how to use <code>ls</code> and all its options</li>
+<li>Type <code>/&lt;keyword&gt;</code> to search for a keyword, use <code>n</code> (forward) and ´N` (backward) to scan through hits.</li>
+<li>Scroll with arrows.</li>
+<li>Type <code>q</code> to quit.</li>
+</ul>
+<div class="admonition challenge">
+<p class="admonition-title">Challenge</p>
+<ul>
+<li>Spend some time now to browse the man pages for the commands you’ve just learned!</li>
+</ul>
+</div>
+<!---
+- Not only user commands!
+
+    Use sections like
+
+        man 2 write
+
+MANUAL SECTIONS
+       The standard sections of the manual include:
+
+       1      User Commands
+
+       2      System Calls
+
+       3      C Library Functions
+
+       4      Devices and Special Files
+
+       5      File Formats and Conventions
+
+       6      Games et. Al.
+
+       7      Miscellanea
+
+       8      System Administration tools and Daemons
+--->
+
+<h2 id="lets-get-wild-with-wildcards">Let’s get wild with Wildcards<a class="headerlink" href="#lets-get-wild-with-wildcards" title="Anchor link to this section for reference">¶</a></h2>
+<p><img alt="Caption" src="../img/wildcards_bear.png"></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="go">ls many_files</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="go">ls many_files/*.txt</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="go">ls many_files/file_1*1.docx</span>
+</code></pre></div>
+<ul>
+<li>Want to clean out temporary files ending in .tmp in all the subdirectories?</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<ul>
+<li>It could be wise to do <code>ls -a */*.tmp</code> first to see what will be deleted...</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="gp">$ </span>rm<span class="w"> </span>*/*.tmp
+</code></pre></div>
+</div>
+<div class="admonition challenge exercise">
+<p class="admonition-title">Challenge</p>
+<ul>
+<li>Exercise:  Create a new directory and move all .txt files in many_files to it.</li>
+</ul>
+</div>
+<h2 id="reading-files">Reading files<a class="headerlink" href="#reading-files" title="Anchor link to this section for reference">¶</a></h2>
+<ul>
+<li>In Linux, you can (if you wish) also display files without being able to change them</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="go">cd old_project</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="go">ls</span>
+</code></pre></div>
+<ul>
+<li>Hmm, which of these files are useful?</li>
+</ul>
+<h3 id="cat-concatenate-files-and-print-on-the-standard-output">cat - concatenate files and print on the standard output<a class="headerlink" href="#cat-concatenate-files-and-print-on-the-standard-output" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="cat in action" src="../img/cat.png"></p>
+<ul>
+<li><code>cat</code> dumps the contents of files to the terminal as text</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="go">cat the_best</span>
+</code></pre></div>
+<ul>
+<li>Yummy!</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="go">cat a</span>
+</code></pre></div>
+<ul>
+<li>
+<p>What's this????</p>
+</li>
+<li>
+<p><strong>Concatenate</strong> files with this wizardry:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="go">cat a the_best &gt; combinedfiles.txt</span>
+</code></pre></div>
+<ul>
+<li>File <code>a</code> is written first and <code>the_best</code> is appended</li>
+</ul>
+<h3 id="head-display-the-top-heading-of-a-file">head — display the top (heading) of a file<a class="headerlink" href="#head-display-the-top-heading-of-a-file" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="head in action" src="../img/head.png"></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="go">head a</span>
+</code></pre></div>
+<ul>
+<li>You can choose how many lines to display (default 10)</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="go">head -n 4 a</span>
+</code></pre></div>
+<h3 id="tail-display-the-end-of-a-file">tail — display the end of a file<a class="headerlink" href="#tail-display-the-end-of-a-file" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="tail in action" src="../img/tail.png"></p>
+<ul>
+<li>Tail is the same as head, but for the other end.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="go">tail -n 5 a</span>
+</code></pre></div>
+<ul>
+<li>Handy to look at log files or to figure out the structure of a text file.</li>
+</ul>
+<h3 id="less-read-a-whole-file">less — read a whole file<a class="headerlink" href="#less-read-a-whole-file" title="Anchor link to this section for reference">¶</a></h3>
+<ul>
+<li>cat doesn’t really work for long files</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="go"> less a</span>
+</code></pre></div>
+<ul>
+<li>Search with <code>/&lt;keyword&gt;</code> and <code>n</code>/<code>N</code></li>
+<li>Hit <code>q</code> to quit.</li>
+<li>scroll with arrows.</li>
+<li>
+<p><code>man</code> uses `less!</p>
+<p>“less is more`</p>
+</li>
+</ul>
+<h2 id="history">History<a class="headerlink" href="#history" title="Anchor link to this section for reference">¶</a></h2>
+<ul>
+<li><code>history</code> shows previous commands</li>
+<li>You can rerun earlier commands by:<ul>
+<li>copy-pasting and pressing <code>&lt;enter&gt;</code></li>
+<li><code>!990</code> will run the command of line 990 of last <code>history</code> output.</li>
+</ul>
+</li>
+<li>Search for earlier commands you just remember parts of:<ul>
+<li>history | grep 'jobstats'</li>
+</ul>
+</li>
+<li><a href="https://www.redswitches.com/blog/linux-history-command/">More info</a></li>
+</ul>
+<h2 id="file-permissions">File permissions<a class="headerlink" href="#file-permissions" title="Anchor link to this section for reference">¶</a></h2>
+<p><img alt="Caption" src="../img/permission.png"></p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Anchor link to this section for reference">¶</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="gp">$ </span>ls<span class="w"> </span>-l
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="go">drwxrwxr-x 2 marcusl marcusl 4096 Sep 19 2012 external_hdd</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="go">-rwxr-xr-x 1 marcusl marcusl 17198 Jul 16 14:12 files.tar.gz</span>
+</code></pre></div>
+<ul>
+<li>Leading symbol:<ul>
+<li><code>d</code> directory</li>
+<li><code>-</code> regular file</li>
+<li><code>l</code> symbolic link (more on this tomorrow)</li>
+<li>Others exist, but you can ignore them for now</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="gp">$ </span>ls<span class="w"> </span>-l
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="go">  drwxrwxr-x 2 marcusl marcusl 4096 Sep 19 2012 external_hdd</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="go">  -rwxr-xr-x 1 marcusl marcusl 17198 Jul 16 14:12 files.tar.gz</span>
+</code></pre></div>
+<ul>
+<li>
+<p>Three sets of “rwx` permissions</p>
+<ul>
+<li>rwx: r ead, w rite, ex ecute</li>
+<li>User: the user account that owns the file (usually the one that created it)</li>
+<li>Group: the group that owns the file (usually the <em>project group</em> in /proj/xyz or the user’s group elsewhere)</li>
+<li>Others: everyone else on the system (literally a thousand strangers)</li>
+</ul>
+</li>
+<li>
+<p>r - read</p>
+<ul>
+<li>Files: Read the contents of the file</li>
+<li>Directories: List the files in the directory</li>
+</ul>
+</li>
+<li>
+<p>w - write</p>
+<ul>
+<li>Files: Modify the file</li>
+<li>Directories: Add, rename, or delete files in the directory</li>
+</ul>
+</li>
+<li>
+<p>x - execute</p>
+<ul>
+<li>Files: Run the file as a program</li>
+<li>Directories: Traverse the directory (e.g. with “cd`)</li>
+</ul>
+</li>
+</ul>
+<h2 id="changing-permissions">Changing permissions<a class="headerlink" href="#changing-permissions" title="Anchor link to this section for reference">¶</a></h2>
+<p><strong>chmod</strong> — change file mode bits</p>
+<p>If you own, i.e. created, the file or directory, you can modify the content.</p>
+<div class="admonition admonition">
+<p class="admonition-title">Common issues</p>
+<ul>
+<li>Files with <code>w</code> can be modified and destroyed by accident. Protect your data!</li>
+<li>If you want to share data or scripts with a person not in your project (e.g. support staff like me), you can!</li>
+<li>If you want to keep non-members from even seeing which files you have, you can!</li>
+</ul>
+</div>
+<h3 id="syntax">Syntax<a class="headerlink" href="#syntax" title="Anchor link to this section for reference">¶</a></h3>
+<p><code>chmod &lt;mode&gt; &lt;files&gt;</code></p>
+<ul>
+<li><code>&lt;mode&gt;</code> is of the form: For whom, Modify, What permission(s)</li>
+<li>For whom?<ul>
+<li><code>u</code>: user/owner</li>
+<li><code>g</code>: group, often the members to a certain project</li>
+<li><code>o</code>: others</li>
+<li><code>a</code>: all</li>
+<li>if not set changes are applied for user AND group</li>
+</ul>
+</li>
+<li>Modify?<ul>
+<li><code>+</code>: add permissions,</li>
+<li><code>-</code>: remove</li>
+<li><code>=</code>: set equal to<ul>
+<li><code>=</code> usually causes unmentioned bits to be removed except that a directory's unmentioned set user and group ID bits are not affected.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What permissions?<ul>
+<li><code>r</code>, <code>w</code>, <code>x</code>, i.e. the actual permission</li>
+</ul>
+</li>
+</ul>
+<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">¶</a></h4>
+<ul>
+<li>
+<p><code>&lt;mode&gt;</code> can be e.g.:</p>
+<ul>
+<li><code>u+x</code> : lets You (owner) run a script you just wrote</li>
+<li><code>-w</code> : no write permissions for <strong>owner+group</strong><ul>
+<li>warning: if <code>w</code> was already set for <em>others</em> it will be kept!!</li>
+</ul>
+</li>
+<li><code>+rw</code> : let user and group members read and edit this file, not others if not already set</li>
+<li><code>=xw</code> : let group members go into your directory and put files there, but not see which files are there, others are not affected</li>
+<li><code>a=xw</code> : set xw for everyone</li>
+</ul>
+</li>
+<li>
+<p>chmod takes flags as usual, e.g.</p>
+<ul>
+<li><code>-R</code> for recursive (i.e. all files and sub-directories therein)</li>
+</ul>
+</li>
+</ul>
+<div class="admonition admonition">
+<p class="admonition-title">chmod 755 style — binary sum — octal bit mask</p>
+<ul>
+<li>
+<p>Online, you will come across e.g. <code>chmod 755 &lt;file/dir&gt;</code>. What does this mean? It’s an "octal bit mask`:</p>
+</li>
+<li>
+<p>Each digit corresponds to the <strong>binary sum</strong> for the <em>owner</em>, <em>group</em> and <em>others</em>, respectively.</p>
+<ul>
+<li><code>7 = 4 + 2 + 1 = r + w + x</code>   All permissions</li>
+<li><code>5 = 4 + 0 + 1 = r +   + x</code>   Read and execute permission</li>
+</ul>
+</li>
+<li>
+<p>755 then means all permissions for owner, but limiting write permissions for the group and all others</p>
+</li>
+<li>
+<p>What number would <code>rw</code> be?</p>
+</li>
+</ul>
+<details class="solution">
+<summary>Solution</summary>
+<p>6</p>
+</details>
+</div>
+<details class="challenge" open="open">
+<summary>chmod — Hands-on</summary>
+<ul>
+<li>In your <em>locally created</em> <code>linux_tutorial</code> directory, find important files and old saved data that you wouldn’t want to lose (<em>imagine</em>).</li>
+<li>Directories: important_results/, old_project/</li>
+<li>File: last_years_data</li>
+<li>Use chmod to remove write permission from those files and directories (use the <code>-R</code> flag (not <code>-r</code>) to also do the files in the directories).</li>
+<li>Take a moment to play around with chmod and explore the effects of permissions on files and directories.</li>
+</ul>
+<details class="solution">
+<summary>Solution</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="gp">$ </span>chmod<span class="w"> </span>-wR<span class="w"> </span>&lt;target&gt;
+</code></pre></div>
+</details>
+</details>
+<h2 id="links">Links<a class="headerlink" href="#links" title="Anchor link to this section for reference">¶</a></h2>
+<ul>
+<li>A free online book about Linux: <a href="https://linuxcommand.org/tlcl.php">'The Linux Command Line'</a>.</li>
+</ul></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <!-- <footer class="md-footer"> -->
+<!--   <div class="md-footer-meta md-typeset"> -->
+<!--     <div class="md-footer-meta__inner md-grid"> -->
+<!--       <div > -->
+<!--         <h2>Contact UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Support: <a href="mailto:support@uppmax.uu.se">support@uppmax.uu.se</a></li> -->
+<!--             <li>Director: <a href="http://katalog.uu.se/profile/?id=N94-2143">Elisabeth Larsson</a></li> -->
+<!--             <li>Economy: <a href="http://katalog.uu.se/empinfo/?id=N18-298">Wiola &Ouml;hlund</a></li> -->
+<!--             <li>Post: P.O. Box 337, 751 05 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div > -->
+<!--         <h2>Visit UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Floor 3, House 10, &Aring;ngstr&ouml;m Laboratory</li> -->
+<!--             <li>L&auml;gerhyddsv&auml;gen 1</li> -->
+<!--             <li>752 37 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div> -->
+<!--         <h2>Shortcuts</h2> -->
+<!--         <div> -->
+<!--           <p style="text-align:start"><a href="/support/getting-started/">Apply for a project&nbsp;or user account</a> -->
+<!--           </p> -->
+<!--           <p style="text-align:start"><a href="/support/faq/">FAQ</a></p> -->
+<!--           <p style="text-align:start"><a href="/support/user-guides/">User Guides</a></p> -->
+<!--           <p style="text-align:start"><a href="/resources/software/installed-software/">List of Installed Software</a> -->
+<!--           </p> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!---->
+<!-- </footer> -->
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "search.suggest", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

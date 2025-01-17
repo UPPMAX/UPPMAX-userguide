@@ -1,0 +1,251 @@
+<p class="ingress">A short guide on how to run g09 on UPPMAX.</p>
+
+<h2>Access to Gaussian 09</h2>
+
+<p>Gaussian 09 is available at UPPMAX. Uppsala University has an university license for all employees. If you want to be able to run g09 email <a href="mailto:support@uppmax.uu.se">support@uppmax.uu.se</a> and ask to be added to the g09 group.</p>
+
+<h2>Running g09</h2>
+
+<p>In order to run g09 you must first set up the correct environment. You do this with:</p>
+
+<div>
+<pre>
+module load gaussian<strong>/</strong>g09.d01</pre>
+</div>
+
+<h3>Running single core jobs in SLURM</h3>
+
+<p>Here is an example of a submit script for SLURM:</p>
+
+<div>
+<blockquote>
+<pre>
+<em>&#35;!/bin/bash -l</em>
+<em>&#35;SBATCH -J g09test</em>
+<em>&#35;SBATCH -p core</em>
+<em>&#35;SBATCH -n 1</em>
+<em>&#35;If you ask for a single core in slurm on Rackham you get 6.4 Gb of memory</em>
+<em>&#35;SBATCH -t 1:00:00</em>
+<em>&#35;SBATCH -A your_project_name</em>
+&nbsp;
+module load gaussian<strong>/</strong>g09.d01
+g09 mp2.inp mp2.out</pre>
+</blockquote>
+</div>
+
+<p>If you run a single core job on Rackham you can't use more than 6.4GB of memory.</p>
+
+<p>When specifying the memory requirements, make sure that you ask for some more memory in the submit-script than in g09 to allow for some memory overhead for the program. As a general rule you should ask for 200MB more than you need in the calculation.</p>
+
+<p>The mp2.inp inputfile in the example above:</p>
+
+<div>
+<blockquote>
+<pre>
+<strong>%</strong>Mem=800MB
+<em>&#35;P MP2 aug-cc-pVTZ OPT</em>
+&nbsp;
+test
+&nbsp;
+0 1
+Li 
+F 1 1.0</pre>
+</blockquote>
+</div>
+
+<h2>Scratch space</h2>
+
+<p>The g09 module sets the environment <strong>GAUSS_SCRDIR</strong> to <strong>/scratch/&#36;SLURM_JOBID</strong> in slurm. These directories are removed after the job is finished.</p>
+
+<p>If you want to set <strong>GAUSS_SCRDIR</strong>, you must do it after <strong>module load gaussian/g09.a02</strong> in your script.</p>
+
+<p>If you set <strong>GAUSS_SCRDIR</strong> to something else in your submit script remember to remove all unwanted files after your job has finished.</p>
+
+<p>If you think you will use a large amount of scratch space, you might want to set <strong>maxdisk</strong> in your input file. You can either set <strong>maxdisk</strong> directly on the command line in your input file:</p>
+
+<div>
+<blockquote>
+<pre>
+<em>&#35;P MP2 aug-cc-pVTZ SCF=Tight maxdisk=170GB</em></pre>
+</blockquote>
+</div>
+
+<p>or you can put something like:</p>
+
+<div>
+<blockquote>
+<pre>
+MAXDISK=&#36;<strong>(</strong> df <strong>|</strong> awk '/scratch/ { print &#36;4 }' <strong>)</strong>KB
+sed -i '/^&#35;/ s/ maxdisk=[[:digit:]]*KB//' inputfile
+sed -i '/^&#35;/ s/&#36;/ maxdisk='&#36;MAXDISK'/'; inputfile</pre>
+</blockquote>
+</div>
+
+<p>in your scriptfile. This will set <strong>maxdisk</strong> to the currently available size of the <em>/scratch</em> disk on the node you will run on. Read more on maxdisk in the <a class="external-link" href="http://gaussian.com/g_tech/g_ur/k_maxdisk.htm" target="_blank">online manual</a>.</p>
+
+<h2>Running g09 in parallel</h2>
+
+<p>Gaussian can be run in parallel on a single node using shared memory.</p>
+
+<p>This is the input file for the slurm example below:</p>
+
+<p>The dimer4.inp input:</p>
+
+<div>
+<blockquote>
+<pre>
+<strong>%</strong>Mem=3800MB
+<strong>%</strong>NProcShared=4
+<em>&#35;P MP2 aug-cc-pVTZ SCF=Tight</em>
+&nbsp;
+methanol dimer MP2
+&nbsp;
+0 1
+6 0.754746 -0.733607 -0.191063
+1 -0.033607 -1.456810 -0.395634
+1 1.007890 -0.778160 0.867678
+1 1.635910 -0.998198 -0.774627
+8 0.317192 0.576306 -0.534002
+1 1.033100 1.188210 -0.342355
+6 1.513038 3.469264 0.971885
+1 1.118398 2.910304 1.819367
+1 0.680743 3.818664 0.361783
+1 2.062618 4.333044 1.344537
+8 2.372298 2.640544 0.197416
+1 2.702458 3.161614 -0.539550</pre>
+</blockquote>
+</div>
+
+<h3>Running g09 in parallel in slurm</h3>
+
+<p>This can be done by asking for CPUs on the same node using the parallel <strong>node</strong> environments and telling Gaussian to use several CPUs using the <strong>NProcShared</strong> link 0 command.</p>
+
+<p>An example submit-script:</p>
+
+<div>
+<blockquote>
+<pre>
+<em>&#35;!/bin/bash -l</em>
+<em>&#35;SBATCH -J g09_4</em>
+<em>&#35;SBATCH -p node -n 8</em>
+<em>&#35;SBATCH -t 1:00:00</em>
+<em>&#35;SBATCH -A your_project_name</em>
+&nbsp;
+module load gaussian<strong>/</strong>g09.d01
+export OMP_NUM_THREADS=1
+ulimit -s &#36;STACKLIMIT
+g09 dimer4.inp dimer4.out</pre>
+</blockquote>
+</div>
+
+<p>Notice that 8 cores are requested from the queue-system using the line <strong>&#35;SLURM -p node -n 8</strong> and that Gaussian is told to use 4 cores with the link 0 command <strong>%NProcShared=4</strong></p>
+
+<p>The example above runs about 1.7 times as fast on eight cores than on four, just change in the input file to <strong>%NProcShared=8</strong>.</p>
+
+<p>Please benchmark your own inputs as the speedup depends heavily on the method and size of system.</p>
+
+<p>In some cases Gaussian cannot use all the cpus you ask for. This is indicated in the output with lines looking like this:</p>
+
+<p><em>PrsmSu: requested number of processors reduced to: 1 ShMem 1 Linda.</em></p>
+
+<p>The reason for specifying OMP_NUM_THREADS=1 is to not use the parts of OpenMP in the Gaussian code, but to use Gaussians own threads.</p>
+
+<h2>Running g09 in parallel with linda</h2>
+
+<p>In order to run g09 in parallel over several nodes we have acquired Linda TCP.</p>
+
+<h3>Running g09 in parallel with linda in slurm</h3>
+
+<p>This can be done by asking for CPUs on the same node using the parallel <strong>node</strong> environments and telling Gaussian to use several CPUs using the <strong>NProcLinda</strong> and <strong>NProcShared</strong> link 0 command.</p>
+
+<p>An example submit-script:</p>
+
+<div>
+<blockquote>
+<pre>
+<em>&#35;!/bin/bash -l</em>
+<em>&#35;SBATCH -J g09-linda</em>
+<em>&#35;</em>
+<em>&#35;SBATCH -t 2:00:0 </em>
+<em>&#35;</em>
+<em>&#35;SBATCH -p node -n 40</em>
+<em>&#35;SBATCH -A your_project_name</em>
+&nbsp;
+module load gaussian<strong>/</strong>g09.d01
+ulimit -s &#36;STACKLIMIT
+export OMP_NUM_THREADS=1
+&nbsp;
+<em>&#35;Next lines are there for linda to know what nodes to run on</em>
+srun hostname -s <strong>|</strong> sort -u <strong>&gt;</strong> tsnet.nodes.&#36;SLURM_JOBID
+export GAUSS_LFLAGS='-nodefile tsnet.nodes.&#36;SLURM_JOBID -opt &quot;Tsnet.Node.lindarsharg: ssh&quot;'
+&nbsp;
+<em>&#35;export GAUSS_SCRDIR=</em>
+<strong>time</strong> g09 dimer20-2.inp dimer20-2.out
+&nbsp;
+rm tsnet.nodes.&#36;SLURM_JOBID</pre>
+</blockquote>
+</div>
+
+<p>Here is the input file:</p>
+
+<div>
+<blockquote>
+<pre>
+<strong>%</strong>NProcLinda=2
+<strong>%</strong>NProcShared=20
+<strong>%</strong>Mem=2800MB
+<em>&#35;P MP2 aug-cc-pVTZ SCF=Tight</em>
+&nbsp;
+methanol dimer MP2
+&nbsp;
+0 1
+6 0.754746 -0.733607 -0.191063
+1 -0.033607 -1.456810 -0.395634
+1 1.007890 -0.778160 0.867678
+1 1.635910 -0.998198 -0.774627
+8 0.317192 0.576306 -0.534002
+1 1.033100 1.188210 -0.342355
+6 1.513038 3.469264 0.971885
+1 1.118398 2.910304 1.819367
+1 0.680743 3.818664 0.361783
+1 2.062618 4.333044 1.344537
+8 2.372298 2.640544 0.197416
+1 2.702458 3.161614 -0.539550</pre>
+</blockquote>
+</div>
+
+<p>Notice that 40 cores are requested from the queue-system using the line <strong>&#35;SLURM -p node -n 40</strong> and that g09 is told to use 2 nodes via linda with the <strong>%NProcLinda=2</strong> link 0 command and 20 cores on each node with the link 0 command <strong>%NProcShared=20</strong>.</p>
+
+<p>Please benchmark your own inputs as the speedup depends heavily on the method and size of system.</p>
+
+<p>In some cases Gaussian cannot use all the cpus you ask for. This is indicated in the output with lines looking like this:<br />
+<em>PrsmSu: requested number of processors reduced to: 1 ShMem 1 Linda.</em></p>
+
+<h2>Number of CPUs on the shared memory nodes</h2>
+
+<p>Use the information below as a guide to how many CPUs to request for your calculation:</p>
+
+<p>On <strong>Rackham</strong>:</p>
+
+<ul>
+	<li>272 nodes with two 10-core CPUs and 128GB memory</li>
+	<li>32 nodes with two 10-core CPUs and 256GB memory&nbsp;</li>
+</ul>
+
+<p>On <strong>Milou</strong>:</p>
+
+<ul>
+	<li>174 nodes with two 8-core CPUs and 128GB memory</li>
+	<li>17 nodes with two 8-core CPUs and 256GB memory</li>
+	<li>17 nodes with two 8-core CPUs and 512GB memory</li>
+</ul>
+
+<h2></h2>
+
+<h2>Note on chk-files:</h2>
+
+<p>You may experience difficulties if you mix different versions (g09 and g03) or revisions of gaussian. If you use a checkpoint file (.chk file) from an older revision (say g03 e.01), in a new calculation with revision a.02, g09 may not run properly.</p>
+
+<p>We recommend using the same revision if you want to restart a calculation or reuse an older checkpoint file.</p>
+
+<p class="ingress"></p>

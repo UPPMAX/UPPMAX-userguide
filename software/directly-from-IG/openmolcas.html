@@ -1,0 +1,149 @@
+<p class="ingress">How to run the program MOLCAS on UPPMAX</p>
+
+<h2>Information</h2>
+
+<p>MOLCAS is an ab initio computational chemistry program. Focus in the program is placed on methods for calculating general electronic structures in molecular systems in both ground and excited states. MOLCAS is, in particular, designed to study the potential surfaces of excited states</p>
+
+<p>This guide will help you get started running MOLCAS on UPPMAX. More detailed information on how to use Molcas can be found on the <a href="http://www.molcas.org/">official website</a>.</p>
+
+<h2>Licensing</h2>
+
+<p>A valid license key is required to run Molcas on UPPMAX. The licence key should be kept in a directory named .Molcas under the home directory.</p>
+
+<p>Molcas is currently free of charge for academic researchers active in the Nordic countries. You can get hold of a license by following <a href="https://www.molcas.org/order.html">these instructions</a>.</p>
+
+<h2>Versions installed at UPPMAX</h2>
+
+<p>At UPPMAX the following versions are installed:</p>
+
+<ul>
+	<li>8.0 (serial)</li>
+	<li>7.8 (serial)</li>
+</ul>
+
+<h2>Modules needed to run MOLCAS</h2>
+
+<p>In order to run MOLCAS you must first load the MOLCAS module. You can see all available versions of MOLCAS installed at UPPMAX with:</p>
+
+<div>
+<blockquote>
+<pre>
+module avail molcas</pre>
+</blockquote>
+</div>
+
+<p>Load a MOLCAS module with, eg:</p>
+
+<div>
+<blockquote>
+<pre>
+module load molcas/7.8.082</pre>
+</blockquote>
+</div>
+
+<h2>How to run MOLCAS interactively</h2>
+
+<p>If you would like to do tests or short runs, we recommend using the interactive command:</p>
+
+<div>
+<blockquote>
+<pre>
+interactive -A your_project_name</pre>
+</blockquote>
+</div>
+
+<p>This will reserve a node for you to do your test on. Note that you must provide the name of an active project in order to run on UPPMAX resources. After a short wait you will get access to the node. Then you can run MOLCAS by:</p>
+
+<div>
+<blockquote>
+<pre>
+module load molcas/7.8.082
+molcas -f test000.input</pre>
+</blockquote>
+</div>
+
+<p>The test000.input looks like:</p>
+
+<div>
+<blockquote>
+<pre>
+*&#36;Revision: 7.7 &#36;
+************************************************************************
+* Molecule: H2
+* Basis: DZ
+* Symmetry: x y z
+* SCF: conventional
+*
+*  This is a test to be run during first run to verify
+*  that seward and scf works at all
+*
+&nbsp;
+&gt;export MOLCAS_PRINT=VERBOSE
+ &amp;GATEWAY
+coord
+2
+angstrom
+H  0.350000000  0.000000000  0.000000000
+H -0.350000000  0.000000000  0.000000000
+basis
+H.DZ....
+&nbsp;
+ &amp;SEWARD
+&nbsp;
+ &amp;SCF
+Title
+ H2, DZ Basis set
+&nbsp;
+ &amp;RASSCF
+Title
+ H2, DZ Basis set
+nActEl
+ 2  0 0
+Ras2
+ 1 1 0 0 0 0 0 0
+&nbsp;
+ &amp;ALASKA
+&nbsp;
+ &amp;SLAPAF
+&nbsp;
+ &amp;CASPT2</pre>
+</blockquote>
+</div>
+
+<p>See the <a href="$templateLogic.getPageUrl(144740, $templateLogic.languageId,-1)">SLURM user guide</a> for more information on the interactive command. Don't forget to exit your interactive job when you have finished your calculation. Exiting will free the resource for others to use.</p>
+
+<h2>Batch scripts for slurm</h2>
+
+<p>It's possible to run MOLCAS in the batch queue. Here is an example running MOLCAS on one core:</p>
+
+<div>
+<blockquote>
+<pre>
+<em>&#35;!/bin/bash -l</em>
+<em>&#35;</em>
+<em>&#35;SBATCH -A &lt;em&gt;your_project_name&lt;/em&gt;</em>
+<em>&#35;SBATCH -J molcastest</em>
+<em>&#35;SBATCH -t 00:10:00</em>
+<em>&#35;SBATCH -p core -n 1</em>
+&nbsp;
+module load molcas/7.8.082
+&nbsp;
+<em>&#35;In order to let MOLCAS use more memory</em>
+export MOLCASMEM=2000
+&nbsp;
+molcas -f test000.input</pre>
+</blockquote>
+</div>
+
+<p>Again you'll have to provide your project name.</p>
+
+<p>If the script is called test000.job you can submit it to the batch queue with:</p>
+
+<div>
+<blockquote>
+<pre>
+sbatch test000.job</pre>
+</blockquote>
+</div>
+
+<p>This example will not take many seconds to run on e.g. Tintin or Milou.</p>

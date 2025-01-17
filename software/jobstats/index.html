@@ -1,0 +1,3966 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../darsync/">
+      
+      
+        <link rel="next" href="../projplot/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>jobstats - UPPMAX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#jobstats" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="UPPMAX Documentation" class="md-header__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UPPMAX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              jobstats
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting_started/get_started/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cluster_guides/uppmax_cluster/" class="md-tabs__link">
+          
+  
+  Cluster user guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../databases/overview/" class="md-tabs__link">
+          
+  
+  Databases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../support/" class="md-tabs__link">
+        
+  
+    
+  
+  Support
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-tabs__link">
+        
+  
+    
+  
+  Courses and workshops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-tabs__link">
+        
+  
+    
+  
+  Back to UPPMAX main page
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UPPMAX Documentation" class="md-nav__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    UPPMAX Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/project_apply/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Applying for a Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accessing UPPMAX
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing UPPMAX
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/get_inside_sunet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get inside the university networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Linux tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/linux_basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Linux commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster user guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster user guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/uppmax_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The UPPMAX clusters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://docs.uppmax.uu.se/cluster_guides/system_usage/system_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Clusters
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Clusters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General cluster tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            General cluster tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/start_interactive_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Start an interactive node
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slurm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/project_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing your project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running jobs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Running jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/optimizing_jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checking and optimizing jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/runtime_tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/storage_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage and compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data transfer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Data transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel_migration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/webexport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webexport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text_editors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text editors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Software-specific documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software-specific documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chemistry/physics/atmosphere
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chemistry/physics/atmosphere
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../games_us/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAMESS_US
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaussian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gaussian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openmolcas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Molcas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wrf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrated development environments (IDE)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Integrated development environments (IDE)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rstudio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RStudio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscodium/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCodium
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_3" id="__nav_4_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Life Science
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Life Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../beast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../beast2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../igv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IGV
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metontiime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetONTIIME
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machine Learning and AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning and AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvidia-deep-learning-frameworks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVIDIA DLF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tensorflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TensorFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whisper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Whisper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming languages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Programming languages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MATLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Misc tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../allinea-ddt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Allinea DDT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../darsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    darsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    jobstats
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    jobstats
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jobstats-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      jobstats --plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpreting-a-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreting a plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-efficient-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine efficient use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficient-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficient use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jobstats-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      jobstats --help
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-jobstats-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of jobstats discovery
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    projplot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rclone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rclone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SFTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thinlinc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinLinc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Installing and development
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Installing and development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing with conda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compiling_serial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling serial code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compiling_parallel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling parallel code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debuggers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debuggers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nextflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nextflow & nf-core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Profilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../singularity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singularity/Apptainer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Spack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Databases
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Databases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/blast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BLAST databases available locally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/ncbi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NCBI taxonomy databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/diamond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DIAMOND protein alignment databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/reference_genomes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference genomes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/1000-genome_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1000-genome project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/simons_genome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simons Genome Diversity Project datasets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/other_local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other bioinformatics-oriented local data resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Courses and workshops
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Back to UPPMAX main page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jobstats-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      jobstats --plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpreting-a-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpreting a plot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#determine-efficient-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Determine efficient use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#efficient-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      Efficient use
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jobstats-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      jobstats --help
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modes-of-jobstats-discovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modes of jobstats discovery
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/blob/main/docs/software/jobstats.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/raw/main/docs/software/jobstats.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<div><h1 id="jobstats"><code>jobstats</code><a class="headerlink" href="#jobstats" title="Anchor link to this section for reference">¶</a></h1>
+<p><img alt="jobstats plot" src="../img/jobstats_c_555912-l_1-k_bad_job_01_with_border.png"></p>
+<blockquote>
+<p>An example plot produced by <code>jobstats</code></p>
+</blockquote>
+<p><code>jobststats</code> is an UPPMAX tool to enable discovery of resource usage
+for jobs submitted to the <a href="../../cluster_guides/slurm/">Slurm</a> job queue.</p>
+<p>At this page, it is described:</p>
+<!-- markdownlint-disable-next-line MD051 -->
+<ul>
+<li><a href="#jobstats-plot"><code>jobstats --plot</code></a>: How to use is <code>jobstats --plot</code> to see resource use in a graphical plot</li>
+<li><a href="#efficient-use">Efficient use</a>: How to use your resources efficiently</li>
+<li><a href="#examples">Examples</a>: Examples of ineffective resource use plots</li>
+<li>Other <code>jobstats</code> functionality<ul>
+<li>Using <code>jobstats --help</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="jobstats-plot"><code>jobstats --plot</code><a class="headerlink" href="#jobstats-plot" title="Anchor link to this section for reference">¶</a></h2>
+<p>With the <code>--plot</code> (or <code>-p</code>) option,
+a plot is produced showing the resource use per node
+for a job that completed successfully and took longer than 5 minutes.</p>
+<p>There are many ways to use <code>--plot</code>, a minimal use could be:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span><span class="o">[</span>job_id<span class="o">]</span>
+</code></pre></div>
+<p>for example:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span><span class="m">12345678</span>
+</code></pre></div>
+<p>The produced plot will be produced in the local folder
+with name
+<code>[cluster_name]-[project_name]-[user_name]-[jobid].png</code>,
+for example <code>rackham-uppmax1234-sven-876543.png</code>.
+Use any image viewer, e.g. <a href="../eog/">eog</a> to see it.</p>
+<p>Each plot shows:</p>
+<ul>
+<li>detailed information in the title.</li>
+<li>CPU usage in blue</li>
+<li>current memory usage in solid black</li>
+<li>overall memory usage in dotted black (if available)</li>
+</ul>
+<h2 id="interpreting-a-plot">Interpreting a plot<a class="headerlink" href="#interpreting-a-plot" title="Anchor link to this section for reference">¶</a></h2>
+<p>For example, in this plot:</p>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_milou-b2010042-douglas-8769275_with_border.png"></p>
+<ul>
+<li>the title shows the detailed info. <code>milou</code> is the name of a former UPPMAX cluster.</li>
+<li>CPU usage in blue, which is around 1000%, which is the equivalent of 10 cores
+  being used 100%</li>
+<li>current memory usage in solid black, which is around 20 GB (left-side vertical
+  axis) or a little bit less than 1 core (right-side vertical axis)</li>
+<li>overall memory usage in dotted black, which is around 340 GB (left-side vertical
+  axis) or a little bit less than 11 cores     (right-side vertical axis)</li>
+</ul>
+<p>For jobs running on multiple nodes, plots have multiple columns:</p>
+<p><img alt="jobstats showing a job that used two nodes" src="../img/jobstats_two_nodes_with_border.png"></p>
+<p>Some plots shows suggestions in red:</p>
+<table>
+<thead>
+<tr>
+<th>Text in plot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nodes_overbooked : nodes booked : nodes used:</code></td>
+<td>More nodes were booked than used</td>
+</tr>
+<tr>
+<td><code>overbooked : % used</code></td>
+<td>The maximum percentage of booked cores and/or memory that was used (if &lt; 80%)</td>
+</tr>
+<tr>
+<td><code>!!half_overbooked</code></td>
+<td>No more than one-half of both cores and memory of a node was used; consider booking half a node instead.</td>
+</tr>
+<tr>
+<td><code>!!severely_overbooked</code></td>
+<td>No more than one-quarter of both cores and memory of a node was used, examine your job requirements closely.</td>
+</tr>
+<tr>
+<td><code>!!swap_used</code></td>
+<td>Swap storage was used at any point within the job run</td>
+</tr>
+<tr>
+<td><code>node_type_overbooked : type booked : type used:</code></td>
+<td>A fat node was requested that was larger than was needed. This flag may be produced spuriously if Slurm ran the job on a fat node when a fat node was not requested by the user.</td>
+</tr>
+<tr>
+<td><code>cores_overbooked : cores booked : cores used:</code></td>
+<td>More cores were booked than used (if &lt; 80%)</td>
+</tr>
+<tr>
+<td><code>mem_overbooked : GB booked : GB used:</code></td>
+<td>More memory was available than was used (if &lt; 25% and more than one core).</td>
+</tr>
+<tr>
+<td><code>core_mem_overbooked : GB in used cores : GB used:</code></td>
+<td>Less memory was used than was available in the cores that were used (if &lt; 50%).</td>
+</tr>
+</tbody>
+</table>
+<p>In this example plot, however, the setup is considered good enough.</p>
+<h2 id="determine-efficient-use">Determine efficient use<a class="headerlink" href="#determine-efficient-use" title="Anchor link to this section for reference">¶</a></h2>
+<p>To determine if you efficiently use UPPMAX resources, follow this chart:</p>
+<pre class="mermaid"><code>flowchart TD
+  blue_line_close_to_top[CPU usage maximum above 80%?]
+  black_line_close_to_top[Memory usage maximum above 80%?]
+  can_decrease_number_of_cores[Can the number of cores be decreased?]
+  decrease_number_of_cores(Decrease the number of cores)
+  done(Done)
+  blue_line_close_to_top --&gt; |yes| done
+  blue_line_close_to_top --&gt; |no| black_line_close_to_top
+  black_line_close_to_top --&gt; |yes| done
+  black_line_close_to_top --&gt; |no| can_decrease_number_of_cores
+  can_decrease_number_of_cores --&gt; |yes| decrease_number_of_cores
+  can_decrease_number_of_cores --&gt; |no| done</code></pre>
+<p>If not, follow the strategy at <a href="#efficient-use">efficient use</a></p>
+<h2 id="efficient-use">Efficient use<a class="headerlink" href="#efficient-use" title="Anchor link to this section for reference">¶</a></h2>
+<p>Here is a strategy to effectively use your UPPMAX resources:</p>
+<pre class="mermaid"><code>flowchart TD
+  lower_limit_based_on_memory(Pick the number of cores to have enough memory)
+  limited_by_cpu(For that amount of cores, would runtime by limited by CPU?)
+  lower_limit_based_on_cpu(Increase the number of cores, so that on average, the right amount of CPUs is booked)
+
+  done(Use that amount of cores)
+
+  add_one(Increase the number of cores by one for safety)
+
+  lower_limit_based_on_memory --&gt; limited_by_cpu
+  limited_by_cpu --&gt; |no| add_one
+  limited_by_cpu --&gt; |yes| lower_limit_based_on_cpu
+  lower_limit_based_on_cpu --&gt; done
+  add_one --&gt; done</code></pre>
+<details class="- question">
+<summary>Why not look at CPU usage?</summary>
+<p>Because CPU is more flexible.</p>
+<p>For example, imagine a job with a short CPU spike,
+that can be processed by 16 CPUs.
+If 1 core of memory is enough, use 1 core or memory:
+the spike will be turned into a 100% CPU use (of that one core)
+for a longer duration.</p>
+</details>
+<details class="- question">
+<summary>Need a worked-out example?</summary>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_milou-b2010042-douglas-8769275_with_border.png"></p>
+<blockquote>
+<p>Pick the number of cores to have enough memory</p>
+</blockquote>
+<p>The dotted black line hits the right-hand vertical axis at 1070%.
+This means that 11 cores (i.e. 1100%) would be enough for this job.</p>
+<blockquote>
+<p>For that amount of cores, would runtime by limited by CPU?</p>
+</blockquote>
+<p>The answer is 'no'. Having 11 cores would
+mean that most of the time only 10 are used.
+Only in the CPU spike at the end, the runtime is limited by CPU.
+This short time only has a minor impact on the runtime speed.</p>
+<blockquote>
+<p>Increase the number of cores by one for safety</p>
+</blockquote>
+<p>This means booking 12 cores is recommended.</p>
+</details>
+<details class="- question">
+<summary>Need another worked-out example?</summary>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_05_with_border.png"></p>
+<blockquote>
+<p>Pick the number of cores to have enough memory</p>
+</blockquote>
+<p>The dotted black line hits the right-hand vertical axis at 90%.
+This means that 1 core (i.e. 100%) would be enough for this job.</p>
+<blockquote>
+<p>For that amount of cores, would runtime by limited by CPU?</p>
+</blockquote>
+<p>The answer is 'yes'. Having 1 core would
+mean that around half the time there is too little CPU power.
+This has an effect.</p>
+<blockquote>
+<p>Increase the number of cores, so that on average the right amount of CPUs are booked</p>
+</blockquote>
+<p>This is around 8 cores (800%), as with that amount of cores:</p>
+<ul>
+<li>half of the time, there is 1 out of 7 cores booked,
+  that is 6 too much</li>
+<li>half of the time, there is 7 out of 13 cores booked,
+  that is 6 too little</li>
+</ul>
+<p>This is not an exact algorithm and all numbers from 2 to 9 cores
+can be considered okay.</p>
+</details>
+<p>Sometimes, however, it is inevitable to use resources
+inefficiently, see <a href="#examples">the examples below</a></p>
+<div class="admonition note">
+<p class="admonition-title">No queue is possible</p>
+<p>If everyone followed these guidelines, there would probably not even be a queue most of the time!</p>
+</div>
+<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Anchor link to this section for reference">¶</a></h2>
+<p>Here are some examples of how inefficient jobs can look
+and what you can do to make them more efficient.</p>
+<h3 id="inefficient-job-example-1-booking-too-much-cores">Inefficient job example 1: booking too much cores<a class="headerlink" href="#inefficient-job-example-1-booking-too-much-cores" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_01_with_border.png"></p>
+<p>Here booking 5 cores is considered okay.</p>
+<blockquote>
+<p>Pick the number of cores to have enough memory</p>
+</blockquote>
+<p>The dotted black line hits the right-hand vertical axis at 390%.
+This means that 4 cores (i.e. 400%) would be enough for this job.</p>
+<blockquote>
+<p>For that amount of cores, would runtime by limited by CPU?</p>
+</blockquote>
+<p>The answer is 'no'. Having 4 cores would
+mean that most of the time only 1 are used.
+Only for some CPU spikes, the runtime is limited by CPU.
+This short time only has a minor impact on the runtime speed.</p>
+<blockquote>
+<p>Increase the number of cores by one for safety</p>
+</blockquote>
+<p>This means booking 5 cores is recommended.</p>
+<h3 id="inefficient-job-example-2-booking-too-much-cores">Inefficient job example 2: booking too much cores<a class="headerlink" href="#inefficient-job-example-2-booking-too-much-cores" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_05_with_border.png"></p>
+<p>This is one of the grayer areas:
+booking 2-9 cores is all considered reasonable.</p>
+<blockquote>
+<p>Pick the number of cores to have enough memory</p>
+</blockquote>
+<p>The dotted black line hits the right-hand vertical axis at 90%.
+This means that 1 core (i.e. 100%) would be enough for this job.</p>
+<blockquote>
+<p>For that amount of cores, would runtime by limited by CPU?</p>
+</blockquote>
+<p>The answer is 'yes'. Having 1 core would
+mean that around half the time there is too little CPU power.
+This has an effect.</p>
+<blockquote>
+<p>Increase the number of cores, so that on average the right amount of CPUs are booked</p>
+</blockquote>
+<p>This is around 8 cores (800%), as with that amount of cores:</p>
+<ul>
+<li>half of the time, there is 1 out of 7 cores booked,
+  that is 6 too much</li>
+<li>half of the time, there is 7 out of 13 cores booked,
+  that is 6 too little</li>
+</ul>
+<p>This is not an exact algorithm and all numbers from 2 to 9 cores
+can be considered okay.</p>
+<h3 id="inefficient-job-example-3">Inefficient job example 3<a class="headerlink" href="#inefficient-job-example-3" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_03_with_border.png"></p>
+<p>Here booking 6 cores is considered okay.</p>
+<blockquote>
+<p>Pick the number of cores to have enough memory</p>
+</blockquote>
+<p>The dotted black line hits the right-hand vertical axis at 40%.
+This means that 1 core (i.e. 100%) would be enough for this job.</p>
+<blockquote>
+<p>For that amount of cores, would runtime by limited by CPU?</p>
+</blockquote>
+<p>The answer is 'yes'. Having 1 core would
+mean that most of the time our run is limited by CPU power.
+This has an impact on the runtime speed.</p>
+<blockquote>
+<p>Increase the number of cores, so that on average the right amount of CPUs are booked</p>
+</blockquote>
+<p>This is around 6 cores (600%), as with that amount of cores:</p>
+<ul>
+<li>most of the time, there is 6 out of 6 cores booked,
+  that is 0 too much</li>
+<li>only rarely, there is a little spike up or a bigger spike down</li>
+</ul>
+<p>There are no signs of anything slowing them down, as the line is very even.</p>
+<p>This jobs should either have been booked with 6 cores, or the program running should be told to use all 8 cores.</p>
+<h3 id="inefficient-job-example-4-slowdown">Inefficient job example 4: slowdown<a class="headerlink" href="#inefficient-job-example-4-slowdown" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_02_with_border.png"></p>
+<p>This job is using almost all of the cores it has booked,
+but there seems to be something holding them back.
+The uneven blue curve tells us that something is slowing down the analysis,
+and it's not by a constant amount.</p>
+<p>Usually this is how it looks when the filesystem is the cause of a slowdown.
+Since the load of the filesystem is constantly changing,
+so will the speed by which a job can read data from it also change.</p>
+<p>This job should try to copy all the files it will be working
+with to the nodes local harddrive before running the analysis,
+and by doing so not be affected by the speed of the filesystem.</p>
+<p>Please see the guide How to use the nodes own hard drive
+for analysis for more information.</p>
+<p>You basically just add 2 more commands to your script file
+and the problem should be solved.</p>
+<h3 id="inefficient-job-example-5">Inefficient job example 5<a class="headerlink" href="#inefficient-job-example-5" title="Anchor link to this section for reference">¶</a></h3>
+<p><img alt="jobstats showing a single-node job" src="../img/jobstats_c_555912-l_1-k_bad_job_04_with_border.png"></p>
+<p>This job has the same problem as the example above,
+but in a more extreme way.</p>
+<p>It's not uncommon that people book whole nodes out of habit
+and only run single threaded programs that use almost no memory.
+This job is a bit special in the way that it's being run on a high memory node,
+as you can see on the left Y-axis, that it goes up to 256 GB RAM.
+A normal node on Milou only have 128GB.
+These high memory nodes are only bookable of you book the whole node,
+so you can't book just a few cores on them.
+That means that if you need 130GB RAM and the program is only single threaded,
+your only option is to book a whole high memory node.
+The job will look really inefficient,
+but it's the only way to do it on our system.
+The example in the plot does not fall into this category though,
+as it uses only ~15GB of RAM, which you could get by booking 2-3 normal cores.</p>
+<h2 id="jobstats-help"><code>jobstats --help</code><a class="headerlink" href="#jobstats-help" title="Anchor link to this section for reference">¶</a></h2>
+<p>Use <code>jobstats --help</code> to see the help of <code>jobstats</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>jobstats<span class="w"> </span>--help
+</code></pre></div>
+<details class="- question">
+<summary>How does the output look like?</summary>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>USAGE
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>-----
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    jobstats  -p [-r] [-M cluster] [ jobid [ jobid ... ] | -A project | - ] [other options]
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Discover jobstats for the specified job(s) on the specified cluster.  Cluster
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>defaults to the value of $SNIC_RESOURCE ('rackham' on the current system) if
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>not specified.
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>With the -p/--plot option, a plot is produced from the jobstats for each
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>jobid.  Plots contain one panel per booked node showing CPU (blue) and memory
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>usage (black) traces and include text lines indicating the job number, cluster,
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>end time and duration, user, project, job name, and usage flags (more on those
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>below).  For memory usage, one or two traces are shown: a solid black line
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>shows instantaneous memory usage, and a dotted black line shows overall maximum
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>memory usage if this information is available.
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Plots are saved to the current directory with the name
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    cluster-project-user-jobid.png
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Note that not all jobs will produce jobstats files, particularly if the job was
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>cancelled or ran for less than 5 minutes.  Also, if a job booked nodes
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>inefficiently by not using nodes it asked for, jobstats files will not be
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>available for the booked but unused nodes.
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>JOBSTATS DISCOVERY
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>------------------
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>There are five modes for discovery, depending on what the user provides on the
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>command line: (1) discovery by job number for a completed job; (2) discovery by
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>job number for a currently running job; (3) discovery by node and job number,
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>for a completed or running job; (4) discovery by project; or (5) discovery via
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>information provided on 'stdin'.  In each of the example command lines below, the
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>-p/--plot option requests that plots of job resource usage are created.
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>Mode 1:  jobstats -p jobid1 jobid2 jobid3
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>-------
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>Job numbers valid on the cluster.  [finishedjobinfo](finishedjobinfo.md) is used to determine further
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>information for each job.  If multiple queries are expected, it might be quicker
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>to run [finishedjobinfo](finishedjobinfo.md) yourself separately, see Mode 5 below.  See Mode 2 for a
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>currently running job.
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>Mode 2:  jobstats -p -r jobid1 jobid2 jobid3
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>-------
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>Job numbers of jobs currently running on the cluster.  The Slurm squeue tool is
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>used to determine further information for each running job.
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>Mode 3:  jobstats -p -n m15,m16 jobid
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>-------
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>[finishedjobinfo](finishedjobinfo.md) is *not* called and Uppmax's stored job statistics files are
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>discovered directly.  If you know which node(s) your job ran on or which nodes
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>you are interested in, this will be much faster than Mode 1.
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>Mode 4:  jobstats -p -A project
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>-------
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>When providing a project name that is valid for the cluster, [finishedjobinfo](finishedjobinfo.md) is
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>used to determine further information on jobs run within the project.  As for
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>Mode 1, this can be rather slow.  Furthermore only [finishedjobinfo](finishedjobinfo.md) defaults for
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>time span etc. are used for job discovery.  If multiple queries are expected or
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>additional [finishedjobinfo](finishedjobinfo.md) options are desired, see Mode 5 below.
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>Mode 5:  [finishedjobinfo](finishedjobinfo.md) project | jobstats - -p
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>-------
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>Accept input on stdin formatted like [finishedjobinfo](finishedjobinfo.md) output.  The long form of
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>this option is '--stdin'.  This mode can be especially useful if multiple
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>queries of the same job information are expected.  In this case, save the
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>output of a single comprehensive [finishedjobinfo](finishedjobinfo.md) query, and extract the parts
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>of interest and present them to this script on stdin.  For example, to produce
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>analyses of all completed jobs in a project during the current calendar year,
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>and produce separate tarballs analysing all jobs and providing jobstats plots
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>for each user during this same period:
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>     [finishedjobinfo](finishedjobinfo.md) -y project &gt; proj-year.txt
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>     grep 'jobstat=COMPLETED' proj-year.txt | jobstats - &gt; all-completed-jobs.txt
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>     grep 'username=user1' proj-year.txt | jobstats - -p &gt; user1-jobs.txt
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>     tar czf user1-jobs.tar.gz user1-jobs.txt *-project-user1-*.png
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>     grep 'username=user2' proj-year.txt | jobstats - -p &gt; user2-jobs.txt
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>     tar czf user2-jobs.tar.gz user2-jobs.txt *-project-user2-*.png
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>     ...
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>COMMAND-LINE OPTIONS
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>--------------------
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>    -p | --plot        Produce CPU and memory usage plot for each jobid
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>    -r | --running     Jobids are for jobs currently running on the cluster. The
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>                       Slurm squeue tool is used to discover further information
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>                       for the running jobs, and the rightmost extent of the plot
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>                       produced will reflect the scheduled end time of the job.
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>    -A project         Project valid on the cluster.  [finishedjobinfo](finishedjobinfo.md) is used to
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>                       discover jobs for the project.  See further comments
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>                       under 'Mode 4' above.
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>    -M cluster         Cluster on which jobs were run [default current cluster]
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>    -n node[,node...]  Cluster node(s) on which the job was run.  If specified,
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>                       then the [finishedjobinfo](finishedjobinfo.md) script is not run and discovery
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>                       is restricted to only the specified nodes.  Nodes can be
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>                       specified as a comma-separated list of complete node
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>                       names, or using the [finishedjobinfo](finishedjobinfo.md) syntax:
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>                             m78,m90,m91,m92,m100  or  m[78,90-92,100]
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>                       Nonsensical results will occur if the syntaxes are mixed.
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>    - | --stdin        Accept input on stdin formatted like [finishedjobinfo](finishedjobinfo.md)
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>                       output.  The short form of this option is a single dash
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>                       '-'.
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>
+<a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a>    -m | --memory      Always include memory usage flags in output.  Default
+<a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a>                       behaviour is to include memory usage flags only if CPU
+<a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a>                       usage flags are also present.
+<a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a>
+<a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a>    -v | --verbose     Be wordy when describing flag values.
+<a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a>
+<a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a>    -b | --big-plot    Produce 'big plot' with double the usual dimensions.
+<a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a>                       This implies '-p/--plot'.
+<a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a>
+<a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a>    -q | --quiet       Do not produce table output
+<a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a>
+<a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a>    -Q | --Quick       Run [finishedjobinfo](finishedjobinfo.md) with the -q option, which is slightly
+<a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a>                       faster but does not include Slurm's record of maximum
+<a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a>                       memory used. With this option, memory usage analyses can
+<a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a>                       only rely upon what is reported at 5-minute intervals,
+<a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a>                       and the trace of maximum memory used (dotted black line)
+<a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a>                       is not produced.
+<a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a>
+<a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a>    --no-extended      Do *not* use extended jobstats information [default is to use it]
+<a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
+<a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a>    --paging           Include PAGE_IN/PAGE_OUT statistics from extended jobstats [experimental]
+<a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a>
+<a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a>    -d                 Produce a header for table output
+<a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a>
+<a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a>    --version          Produce version of this script and plot_jobstats, then exit
+<a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a>
+<a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a>    -h | -?            Produce brief help
+<a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a>
+<a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a>    --help             Produce detailed help information
+<a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a>
+<a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a>The following command-line options are generally useful only for Uppmax staff.
+<a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a>
+<a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a>    --cpu-free FLOAT   Maximum CPU busy percentage for the CPU to count as
+<a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a>                       free at that sampling time.  Default is 3 %.
+<a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a>    -x directory       Directory prefix to use for jobstats files.  Default is
+<a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>                       '/sw/share/slurm', and directory structure is (depending on whether
+<a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>                       --no-extended is used):
+<a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a>
+<a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a>                       &lt;prefix&gt;/&lt;cluster&gt;/extended_uppmax_jobstats/&lt;node&gt;/&lt;jobid&gt;
+<a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a>                       &lt;prefix&gt;/&lt;cluster&gt;/uppmax_jobstats/&lt;node&gt;/&lt;jobid&gt;
+<a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a>
+<a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a>    -X directory       Hard directory prefix to use for jobstats files.
+<a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a>                       Jobstats files are assumed available directly:
+<a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a>                           '&lt;hard-prefix&gt;/&lt;jobid&gt;'
+<a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a>    --no-multijobs     Run [finishedjobinfo](finishedjobinfo.md) separately for each jobid, rather
+<a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a>                       than all jobids bundled into one -j option (for debugging)
+<a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a>    -f file            [finishedjobinfo](finishedjobinfo.md) script [default is '/sw/uppmax/bin/finishedjobinfo']
+<a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a>    -P file            plot_jobstats script [default is '/sw/uppmax/bin/plot_jobstats']
+<a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a>
+<a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a>
+<a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a>FURTHER DETAILS
+<a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a>---------------
+<a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a>
+<a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a>This script produces two types of output.  If the -p/--plot command line option
+<a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a>is provided, a plot is created of core and memory usage across the life of the
+<a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a>job.  The name of the file produced has the format:
+<a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a>
+<a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a>    cluster-project-user-jobid.png
+<a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a>
+<a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a>Unless the -q/--quiet option is provided, a table is also produces containing
+<a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a>lines with the following tab-separated fields:
+<a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a>
+<a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a>  jobid cluster jobstate user project endtime runtime flags booked cores node[,node...] jobstats[,jobstats...]
+<a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a>
+<a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a>Field contents:
+<a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a>
+<a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a>  jobid    : Job ID
+<a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>  cluster  : Cluster on which the job was run
+<a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>  jobstate : End status of the job: COMPLETED, RUNNING, FAILED, TIMEOUT, CANCELLED
+<a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a>  user     : Username that submitted the job
+<a id="__codelineno-3-180" name="__codelineno-3-180" href="#__codelineno-3-180"></a>  project  : Project account under which the job was run
+<a id="__codelineno-3-181" name="__codelineno-3-181" href="#__codelineno-3-181"></a>  endtime  : End time of the job (with -n/--node, this is '.')
+<a id="__codelineno-3-182" name="__codelineno-3-182" href="#__codelineno-3-182"></a>  runtime  : Runtime of the job (with -n/--node, this is '.')
+<a id="__codelineno-3-183" name="__codelineno-3-183" href="#__codelineno-3-183"></a>  flags    : Flags indicating various types of resource underutilizations
+<a id="__codelineno-3-184" name="__codelineno-3-184" href="#__codelineno-3-184"></a>  booked   : Number of booked cores (with -n/--node, this is '.')
+<a id="__codelineno-3-185" name="__codelineno-3-185" href="#__codelineno-3-185"></a>  maxmem   : Maximum memory used as reported by Slurm (if unavailable, this is '.')
+<a id="__codelineno-3-186" name="__codelineno-3-186" href="#__codelineno-3-186"></a>  cores    : Number of cores represented in the discovered jobstats files.
+<a id="__codelineno-3-187" name="__codelineno-3-187" href="#__codelineno-3-187"></a>  node     : Node(s) booked for the job, expanded into individual node names,
+<a id="__codelineno-3-188" name="__codelineno-3-188" href="#__codelineno-3-188"></a>             separated by commas; if no nodes were found, this is '.'.
+<a id="__codelineno-3-189" name="__codelineno-3-189" href="#__codelineno-3-189"></a>             The nodes for which jobstats files are available are listed first.
+<a id="__codelineno-3-190" name="__codelineno-3-190" href="#__codelineno-3-190"></a>  jobstats : jobstats files for the nodes, in the same order the nodes are
+<a id="__codelineno-3-191" name="__codelineno-3-191" href="#__codelineno-3-191"></a>             listed, separated by commas; if no jobstats files were discovered,
+<a id="__codelineno-3-192" name="__codelineno-3-192" href="#__codelineno-3-192"></a>             this is '.'
+<a id="__codelineno-3-193" name="__codelineno-3-193" href="#__codelineno-3-193"></a>
+<a id="__codelineno-3-194" name="__codelineno-3-194" href="#__codelineno-3-194"></a>If -r/--running was used, an additional field is present:
+<a id="__codelineno-3-195" name="__codelineno-3-195" href="#__codelineno-3-195"></a>
+<a id="__codelineno-3-196" name="__codelineno-3-196" href="#__codelineno-3-196"></a>  timelimit_minutes : The time limit of the job in minutes
+<a id="__codelineno-3-197" name="__codelineno-3-197" href="#__codelineno-3-197"></a>
+<a id="__codelineno-3-198" name="__codelineno-3-198" href="#__codelineno-3-198"></a>
+<a id="__codelineno-3-199" name="__codelineno-3-199" href="#__codelineno-3-199"></a>FLAGS
+<a id="__codelineno-3-200" name="__codelineno-3-200" href="#__codelineno-3-200"></a>-----
+<a id="__codelineno-3-201" name="__codelineno-3-201" href="#__codelineno-3-201"></a>
+<a id="__codelineno-3-202" name="__codelineno-3-202" href="#__codelineno-3-202"></a>An important part of jobstats output are usage flags.  These provide indications
+<a id="__codelineno-3-203" name="__codelineno-3-203" href="#__codelineno-3-203"></a>that booked resources -- processor cores or memory -- might have been
+<a id="__codelineno-3-204" name="__codelineno-3-204" href="#__codelineno-3-204"></a>underused.
+<a id="__codelineno-3-205" name="__codelineno-3-205" href="#__codelineno-3-205"></a>
+<a id="__codelineno-3-206" name="__codelineno-3-206" href="#__codelineno-3-206"></a>In both plot and table output, flags are a comma-separated list of cautions
+<a id="__codelineno-3-207" name="__codelineno-3-207" href="#__codelineno-3-207"></a>regarding core and/or memory underutilisation.  The appearance of a flag does
+<a id="__codelineno-3-208" name="__codelineno-3-208" href="#__codelineno-3-208"></a>not necessarily mean that resources were used incorrectly.  It depends upon the
+<a id="__codelineno-3-209" name="__codelineno-3-209" href="#__codelineno-3-209"></a>tools being used and the contents of the Slurm header, and also depends upon
+<a id="__codelineno-3-210" name="__codelineno-3-210" href="#__codelineno-3-210"></a>the job profile.  Because usage information is gathered every 5 minutes, higher
+<a id="__codelineno-3-211" name="__codelineno-3-211" href="#__codelineno-3-211"></a>transient usage of cores or memory may not be captured in the log files.
+<a id="__codelineno-3-212" name="__codelineno-3-212" href="#__codelineno-3-212"></a>
+<a id="__codelineno-3-213" name="__codelineno-3-213" href="#__codelineno-3-213"></a>Flags most likely to represent real overbooking of resources are
+<a id="__codelineno-3-214" name="__codelineno-3-214" href="#__codelineno-3-214"></a>nodes_overbooked, overbooked, !!half_overbooked, !!severely_overbooked, and
+<a id="__codelineno-3-215" name="__codelineno-3-215" href="#__codelineno-3-215"></a>!!swap_used.
+<a id="__codelineno-3-216" name="__codelineno-3-216" href="#__codelineno-3-216"></a>
+<a id="__codelineno-3-217" name="__codelineno-3-217" href="#__codelineno-3-217"></a>For multinode jobs, flags other than nodes_overbooked are determined based only
+<a id="__codelineno-3-218" name="__codelineno-3-218" href="#__codelineno-3-218"></a>on the usage of the first node.  Multinode jobs require careful analysis so as
+<a id="__codelineno-3-219" name="__codelineno-3-219" href="#__codelineno-3-219"></a>to not waste resources unnecessarily, and it is a common mistake among
+<a id="__codelineno-3-220" name="__codelineno-3-220" href="#__codelineno-3-220"></a>beginning Uppmax users to book multiple nodes and run tools that cannot use
+<a id="__codelineno-3-221" name="__codelineno-3-221" href="#__codelineno-3-221"></a>more than the first.  In this case, nodes_overbooked will appear.
+<a id="__codelineno-3-222" name="__codelineno-3-222" href="#__codelineno-3-222"></a>
+<a id="__codelineno-3-223" name="__codelineno-3-223" href="#__codelineno-3-223"></a>Some flags have a threshold below which they appear.  The default format is
+<a id="__codelineno-3-224" name="__codelineno-3-224" href="#__codelineno-3-224"></a>generally 'flag:value-booked:value-used'.
+<a id="__codelineno-3-225" name="__codelineno-3-225" href="#__codelineno-3-225"></a>
+<a id="__codelineno-3-226" name="__codelineno-3-226" href="#__codelineno-3-226"></a>  nodes_overbooked : nodes booked : nodes used
+<a id="__codelineno-3-227" name="__codelineno-3-227" href="#__codelineno-3-227"></a>      More nodes were booked than used
+<a id="__codelineno-3-228" name="__codelineno-3-228" href="#__codelineno-3-228"></a>  overbooked : % used (if &lt; 80%)
+<a id="__codelineno-3-229" name="__codelineno-3-229" href="#__codelineno-3-229"></a>      The maximum percentage of booked cores and/or memory that was used
+<a id="__codelineno-3-230" name="__codelineno-3-230" href="#__codelineno-3-230"></a>  !!half_overbooked
+<a id="__codelineno-3-231" name="__codelineno-3-231" href="#__codelineno-3-231"></a>      No more than 1/2 of both cores and memory of a node was used; consider booking
+<a id="__codelineno-3-232" name="__codelineno-3-232" href="#__codelineno-3-232"></a>      half a node instead.
+<a id="__codelineno-3-233" name="__codelineno-3-233" href="#__codelineno-3-233"></a>  !!severely_overbooked
+<a id="__codelineno-3-234" name="__codelineno-3-234" href="#__codelineno-3-234"></a>      No more than 1/4 of both cores and memory of a node was used, examine your job
+<a id="__codelineno-3-235" name="__codelineno-3-235" href="#__codelineno-3-235"></a>      requirements closely.
+<a id="__codelineno-3-236" name="__codelineno-3-236" href="#__codelineno-3-236"></a>  !!swap_used
+<a id="__codelineno-3-237" name="__codelineno-3-237" href="#__codelineno-3-237"></a>      Swap storage was used at any point within the job run
+<a id="__codelineno-3-238" name="__codelineno-3-238" href="#__codelineno-3-238"></a>  node_type_overbooked : type booked : type used
+<a id="__codelineno-3-239" name="__codelineno-3-239" href="#__codelineno-3-239"></a>      A fat node was requested that was larger than was needed.  This flag may be
+<a id="__codelineno-3-240" name="__codelineno-3-240" href="#__codelineno-3-240"></a>      produced spuriously if Slurm ran the job on a fat node when a fat node was not
+<a id="__codelineno-3-241" name="__codelineno-3-241" href="#__codelineno-3-241"></a>      requested by the user.
+<a id="__codelineno-3-242" name="__codelineno-3-242" href="#__codelineno-3-242"></a>  cores_overbooked : cores booked : cores used
+<a id="__codelineno-3-243" name="__codelineno-3-243" href="#__codelineno-3-243"></a>      More cores were booked than used (if &lt; 80%)
+<a id="__codelineno-3-244" name="__codelineno-3-244" href="#__codelineno-3-244"></a>  mem_overbooked : GB booked : GB used
+<a id="__codelineno-3-245" name="__codelineno-3-245" href="#__codelineno-3-245"></a>      More memory was available than was used (if &lt; 25% and more than one core).
+<a id="__codelineno-3-246" name="__codelineno-3-246" href="#__codelineno-3-246"></a>  core_mem_overbooked : GB in used cores : GB used
+<a id="__codelineno-3-247" name="__codelineno-3-247" href="#__codelineno-3-247"></a>      Less memory was used than was available in the cores that were used (if &lt; 50%).
+<a id="__codelineno-3-248" name="__codelineno-3-248" href="#__codelineno-3-248"></a>
+<a id="__codelineno-3-249" name="__codelineno-3-249" href="#__codelineno-3-249"></a>By default no flags are indicated for jobs with memory-only cautions except for
+<a id="__codelineno-3-250" name="__codelineno-3-250" href="#__codelineno-3-250"></a>swap usage, because it is common for jobs to heavily use processor cores
+<a id="__codelineno-3-251" name="__codelineno-3-251" href="#__codelineno-3-251"></a>without using a sizable fraction of memory.  Use the -m/--memory option to
+<a id="__codelineno-3-252" name="__codelineno-3-252" href="#__codelineno-3-252"></a>include flags for memory underutilisation when those would be the only flags
+<a id="__codelineno-3-253" name="__codelineno-3-253" href="#__codelineno-3-253"></a>produced.
+<a id="__codelineno-3-254" name="__codelineno-3-254" href="#__codelineno-3-254"></a>
+<a id="__codelineno-3-255" name="__codelineno-3-255" href="#__codelineno-3-255"></a>More verbose flags are output with the -v/--verbose option.
+<a id="__codelineno-3-256" name="__codelineno-3-256" href="#__codelineno-3-256"></a>
+<a id="__codelineno-3-257" name="__codelineno-3-257" href="#__codelineno-3-257"></a>
+<a id="__codelineno-3-258" name="__codelineno-3-258" href="#__codelineno-3-258"></a>Script:   /sw/uppmax/bin/jobstats
+<a id="__codelineno-3-259" name="__codelineno-3-259" href="#__codelineno-3-259"></a>Version:  2023-11-16
+</code></pre></div>
+</details>
+<h2 id="modes-of-jobstats-discovery">Modes of <code>jobstats</code> discovery<a class="headerlink" href="#modes-of-jobstats-discovery" title="Anchor link to this section for reference">¶</a></h2>
+<p>There are five modes for discovery,
+depending on what the user provides on the command line:</p>
+<ul>
+<li>(1) discovery by job number for a completed job;</li>
+<li>(2) discovery by job number for a currently running job;</li>
+<li>(3) discovery by node and job number, for a completed or running job;</li>
+<li>(4) discovery by project</li>
+<li>(5) discovery via information provided on stdin.</li>
+</ul>
+<p>In the example command lines below, the -p/--plot option requests that plots of job resource usage are created.</p>
+<h3 id="jobstats-discovery-mode-1-discovery-by-job-number-for-a-completed-job"><code>jobstats</code> discovery mode 1: discovery by job number for a completed job<a class="headerlink" href="#jobstats-discovery-mode-1-discovery-by-job-number-for-a-completed-job" title="Anchor link to this section for reference">¶</a></h3>
+<p>Discovery by job number for a completed job:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span>jobid1<span class="w"> </span>jobid2<span class="w"> </span>jobid3
+</code></pre></div>
+<p>The job numbers valid on the cluster.
+<a href="../finishedjobinfo/">finishedjobinfo</a> is used
+to determine further information for each job.
+This can be rather slow,
+and a message asking for your patience is printed for each job.</p>
+<p>If multiple queries are expected it would be quicker
+to run <a href="../finishedjobinfo/">finishedjobinfo</a> yourself separately,
+see Mode 4 below. See Mode 2 for a currently running job.</p>
+<h3 id="jobstats-discovery-mode-2-discovery-by-job-number-for-a-currently-running-job"><code>jobstats</code> discovery mode 2: discovery by job number for a currently running job<a class="headerlink" href="#jobstats-discovery-mode-2-discovery-by-job-number-for-a-currently-running-job" title="Anchor link to this section for reference">¶</a></h3>
+<p>Discovery by job number for a currently running job.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span>-r<span class="w"> </span>jobid1<span class="w"> </span>jobid2<span class="w"> </span>jobid3
+</code></pre></div>
+<p>Job numbers of jobs currently running on the cluster.
+<a href="../../cluster_guides/slurm/">The Slurm schedule</a> is used to determine
+further information for each running job.</p>
+<h3 id="jobstats-discovery-mode-3-discovery-by-node-and-job-number-for-a-completed-or-running-job"><code>jobstats</code> discovery mode 3: discovery by node and job number, for a completed or running job<a class="headerlink" href="#jobstats-discovery-mode-3-discovery-by-node-and-job-number-for-a-completed-or-running-job" title="Anchor link to this section for reference">¶</a></h3>
+<p>Discovery by node and job number, for a completed or running job.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span>-n<span class="w"> </span>m15,m16<span class="w"> </span>jobid
+</code></pre></div>
+<p><a href="../finishedjobinfo/">finishedjobinfo</a> is not called and
+UPPMAX's stored job statistics files for the cluster of interest are discovered directly.
+If you know which node(s) your job ran on
+or which nodes you are interested in, this will be much faster than Mode 1.</p>
+<h3 id="jobstats-discovery-mode-4-discovery-by-project"><code>jobstats</code> discovery mode 4: discovery by project<a class="headerlink" href="#jobstats-discovery-mode-4-discovery-by-project" title="Anchor link to this section for reference">¶</a></h3>
+<p>Discovery by project.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>jobstats<span class="w"> </span>--plot<span class="w"> </span>-A<span class="w"> </span>project
+</code></pre></div>
+<p>When providing a project name that is valid for the cluster,
+<a href="../finishedjobinfo/">finishedjobinfo</a> is used
+to determine further information on jobs run within the project.
+As for Mode 1, this can be rather slow,
+and a message asking for your patience is printed.</p>
+<p>Furthermore only <a href="../finishedjobinfo/">finishedjobinfo</a> defaults
+for time span etc. are used for job discovery.
+If multiple queries are expected
+or additional <a href="../finishedjobinfo/">finishedjobinfo</a> options are desired,
+see Mode 5 below.</p>
+<h3 id="jobstats-discovery-mode-5-discovery-via-information-provided-on-stdin"><code>jobstats</code> discovery mode 5: discovery via information provided on stdin<a class="headerlink" href="#jobstats-discovery-mode-5-discovery-via-information-provided-on-stdin" title="Anchor link to this section for reference">¶</a></h3>
+<p>Discovery via information provided on <code>stdin</code>:</p>
+<details class="- question">
+<summary>What is <code>stdin</code>?</summary>
+<p><code>stdin</code> is an abbreviation for 'Standard input',
+see <a href="https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)">the Wikipedia page on 'stdin'</a></p>
+</details>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>finishedjobinfo<span class="w"> </span>-q<span class="w"> </span>project<span class="w"> </span><span class="p">|</span><span class="w"> </span>jobstats<span class="w"> </span>-<span class="w"> </span>--plot
+</code></pre></div>
+<p>Accept input on <code>stdin</code> formatted like <a href="../finishedjobinfo/">finishedjobinfo</a> output.
+Note the single dash (<code>-</code>) option given to <a href="./">jobstats</a>;
+the long form of this option is <code>--stdin</code>.
+This mode can be especially useful if
+multiple queries of the same job information are expected.
+In this case, save the output of a single comprehensive <a href="../finishedjobinfo/">finishedjobinfo</a> query,
+and extract the parts of interest and present them to this script on <code>stdin</code>.</p>
+<p>For example, to produce analyses of all completed jobs in a project
+during the current calendar year, and produce separate tarballs
+analysing all jobs and providing jobstats plots for each user during this same period:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">project</span><span class="o">=</span>myproj
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>finishedjobinfo<span class="w"> </span>-q<span class="w"> </span>-y<span class="w"> </span><span class="si">${</span><span class="nv">project</span><span class="si">}</span><span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">project</span><span class="si">}</span>-year.txt
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>grep<span class="w"> </span><span class="s1">'jobstat=COMPLETED'</span><span class="w"> </span><span class="si">${</span><span class="nv">project</span><span class="si">}</span>-year.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>jobstats<span class="w"> </span>-<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">project</span><span class="si">}</span>-completed-jobs.txt
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">for</span><span class="w"> </span>u<span class="w"> </span><span class="k">in</span><span class="w"> </span>user1<span class="w"> </span>user2<span class="w"> </span>user3<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span>grep<span class="w"> </span><span class="s2">"username=</span><span class="si">${</span><span class="nv">u</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="si">${</span><span class="nv">project</span><span class="si">}</span>-year.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>jobstats<span class="w"> </span>-<span class="w"> </span>--plot<span class="w"> </span>&gt;<span class="w"> </span><span class="si">${</span><span class="nv">u</span><span class="si">}</span>-jobs.txt
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span>tar<span class="w"> </span>czf<span class="w"> </span><span class="si">${</span><span class="nv">u</span><span class="si">}</span>-jobs.tar.gz<span class="w"> </span><span class="si">${</span><span class="nv">u</span><span class="si">}</span>-jobs.txt<span class="w"> </span>*-<span class="si">${</span><span class="nv">project</span><span class="si">}</span>-<span class="si">${</span><span class="nv">u</span><span class="si">}</span>-*.png
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="k">done</span>
+</code></pre></div></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <!-- <footer class="md-footer"> -->
+<!--   <div class="md-footer-meta md-typeset"> -->
+<!--     <div class="md-footer-meta__inner md-grid"> -->
+<!--       <div > -->
+<!--         <h2>Contact UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Support: <a href="mailto:support@uppmax.uu.se">support@uppmax.uu.se</a></li> -->
+<!--             <li>Director: <a href="http://katalog.uu.se/profile/?id=N94-2143">Elisabeth Larsson</a></li> -->
+<!--             <li>Economy: <a href="http://katalog.uu.se/empinfo/?id=N18-298">Wiola &Ouml;hlund</a></li> -->
+<!--             <li>Post: P.O. Box 337, 751 05 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div > -->
+<!--         <h2>Visit UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Floor 3, House 10, &Aring;ngstr&ouml;m Laboratory</li> -->
+<!--             <li>L&auml;gerhyddsv&auml;gen 1</li> -->
+<!--             <li>752 37 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div> -->
+<!--         <h2>Shortcuts</h2> -->
+<!--         <div> -->
+<!--           <p style="text-align:start"><a href="/support/getting-started/">Apply for a project&nbsp;or user account</a> -->
+<!--           </p> -->
+<!--           <p style="text-align:start"><a href="/support/faq/">FAQ</a></p> -->
+<!--           <p style="text-align:start"><a href="/support/user-guides/">User Guides</a></p> -->
+<!--           <p style="text-align:start"><a href="/resources/software/installed-software/">List of Installed Software</a> -->
+<!--           </p> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!---->
+<!-- </footer> -->
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "search.suggest", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

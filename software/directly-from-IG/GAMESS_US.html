@@ -1,0 +1,59 @@
+
+
+
+
+<p class="ingress">GAMESS-US versions 20170930 is&nbsp;installed on Rackham. Newer versions can be installed on request to UPPMAX support. Snowy currently lacks GAMESS-US.</p>
+
+<h2>Citing GAMESS papers</h2>
+
+<p>It is essential that you read the GAMESS manual thoroughly to properly reference the papers specified in the instructions. All publications using gamess should cite at least the following paper:</p>
+
+<div>
+<pre>
+<strong>@</strong>Article<strong>{</strong>GAMESS,
+author=<strong>{</strong>M.W.Schmidt and K.K.Baldridge and J.A.Boatz and S.T.Elbert and
+M.S.Gordon and J.J.Jensen and S.Koseki and N.Matsunaga and
+K.A.Nguyen and S.Su and T.L.Windus and M.Dupuis and J.A.Montgomery<strong>}</strong>,
+journal=<strong>{</strong>J.~Comput.~Chem.<strong>}</strong>,
+volume=14,
+pages=<strong>{</strong>1347<strong>}</strong>,
+year=1993,
+comment=<strong>{</strong>The GAMESS program<strong>}</strong><strong>}</strong></pre>
+</div>
+
+<p>If you need to obtain GAMESS yourself, please visit the GAMESS website for further instructions.</p>
+
+<h2>Running GAMESS</h2>
+
+<h3><br />
+Load the module using</h3>
+
+<p><code>module load gamess<strong>/</strong>20170930</code></p>
+
+<p></p>
+
+<p>Below is an example submitscript for Rackham, running on 40 cores (2 nodes with 20 cores each). It is essential to specify the project name:</p>
+
+<div>
+<pre>
+<em>&#35;!/bin/bash -l</em>
+<em>&#35;SBATCH -J jobname</em>
+<em>&#35;SBATCH -p node -n 40</em>
+<em>&#35;SBATCH -A PROJECT</em>
+<em>&#35;SBATCH -t 03:00:00</em>
+&nbsp;
+module load gamess<strong>/</strong>20170930
+&nbsp;
+rungms gms <strong>&gt;</strong>gms.out</pre>
+</div>
+
+<h3>Memory specification</h3>
+
+<p>GAMESS uses two kinds of memory: replicated memory and distributed memory. Both kinds of memory should be given in the &#36;SYSTEM specification. Replicated memory is specified using the MWORDS keyword and distributed memory with the MEMDDI keyword. It is very important that you understand the uses of these keywords. Check the GAMESS documentation for further information.</p>
+
+<p>If your job requires 16MW (mega-words) of replicated memory and 800MW of distributed memory, as in the example below, the memory requirements per CPU core varies as 16+800/N where N is the number of cores. Each word is 8 bytes of memory, why the amount of memory per core is (16+800/N)*8. The amount of memory per node depends on the number of cores per node. Rackham has 20 cores per node, most nodes have 128 GB of memory, but 30 nodes have 512 GB and 4 nodes at 1 TB.</p>
+
+<h3><br />
+Communication</h3>
+
+<p>For intra-node communication shared memory is used. For inter-node communication MPI is used which uses the Infiniband interconnect.</p>

@@ -1,0 +1,3358 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Create a Singularity container from a Singularity script on a computer with Linux where you have super-user rights - UPPMAX Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lato";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#create-a-singularity-container-from-a-singularity-script-on-a-computer-with-linux-where-you-have-super-user-rights" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="UPPMAX Documentation" class="md-header__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UPPMAX Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Create a Singularity container from a Singularity script on a computer with Linux where you have super-user rights
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting_started/get_started/" class="md-tabs__link">
+          
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../cluster_guides/uppmax_cluster/" class="md-tabs__link">
+          
+  
+  Cluster user guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  Software
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../databases/overview/" class="md-tabs__link">
+          
+  
+  Databases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../support/" class="md-tabs__link">
+        
+  
+    
+  
+  Support
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-tabs__link">
+        
+  
+    
+  
+  Courses and workshops
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-tabs__link">
+        
+  
+    
+  
+  Back to UPPMAX main page
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UPPMAX Documentation" class="md-nav__button md-logo" aria-label="UPPMAX Documentation" data-md-component="logo">
+      
+  <img src="../../assets/logo_color.png" alt="logo">
+
+    </a>
+    UPPMAX Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/UPPMAX/UPPMAX-documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Getting Started
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/get_started/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get started
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/project_apply/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Applying for a Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Accessing UPPMAX
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Accessing UPPMAX
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/get_inside_sunet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Get inside the university networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/login_dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Log in to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux tutorials
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Linux tutorials
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Working in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting_started/linux_basics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Basic Linux commands
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Cluster user guide
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Cluster user guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/uppmax_cluster/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The UPPMAX clusters
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://docs.uppmax.uu.se/cluster_guides/system_usage/system_usage.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    System usage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Clusters
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Clusters
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/snowy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Snowy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    General cluster tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            General cluster tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/start_interactive_node/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Start an interactive node
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/modules/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modules
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/slurm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Slurm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/project_management/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Managing your project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Running jobs
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Running jobs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/optimizing_jobs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Checking and optimizing jobs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/runtime_tips/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Runtime tips
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/storage_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Storage and compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data transfer
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Data transfer
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_rackham/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Rackham
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/transfer_bianca/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transfer to/from Bianca
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/dardel_migration/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Migrate to Dardel (at PDC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster_guides/webexport/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Webexport
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../software-table/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Software table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../text_editors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Text editors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Software-specific documentation
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Software-specific documentation
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_1" id="__nav_4_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Chemistry/physics/atmosphere
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Chemistry/physics/atmosphere
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../games_us/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAMESS_US
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaussian/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Gaussian
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gromacs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GROMACS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../openmolcas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Molcas
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wrf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WRF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_2" id="__nav_4_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Integrated development environments (IDE)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Integrated development environments (IDE)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jupyter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Jupyter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rstudio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RStudio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vscodium/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCodium
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_3" id="__nav_4_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Life Science
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Life Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../beast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../beast2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BEAST2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../igv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    IGV
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metontiime/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MetONTIIME
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_4" id="__nav_4_4_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Machine Learning and AI
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            Machine Learning and AI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nvidia-deep-learning-frameworks/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NVIDIA DLF
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tensorflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TensorFlow
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whisper/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Whisper
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_5" id="__nav_4_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Programming languages
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Programming languages
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../julia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Julia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matlab/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MATLAB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../perl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Perl
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../r/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4_6" id="__nav_4_4_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Misc tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            Misc tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../allinea-ddt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Allinea DDT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../darsync/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    darsync
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jobstats/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    jobstats
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projplot/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    projplot
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rclone/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rclone
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ssh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SSH
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sftp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SFTP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../thinlinc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ThinLinc
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Installing and development
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            Installing and development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Installing with conda
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compiling_serial/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling serial code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../compiling_parallel/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compiling parallel code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../debuggers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Debuggers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../nextflow/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Nextflow & nf-core
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../profilers/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Profilers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../singularity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singularity/Apptainer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Spack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Databases
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Databases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/blast/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BLAST databases available locally
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/ncbi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NCBI taxonomy databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/diamond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DIAMOND protein alignment databases
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/reference_genomes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference genomes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/1000-genome_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1000-genome project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/simons_genome/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Simons Genome Diversity Project datasets
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../databases/other_local/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Other bioinformatics-oriented local data resources
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../courses_workshops/courses_workshops/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Courses and workshops
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://www.uu.se/en/centre/uppmax" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Back to UPPMAX main page
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedure
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/blob/main/docs/software/create_singularity_container_from_a_singularity_script_on_linux.md" title="Edit this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/UPPMAX/UPPMAX-documentation/raw/main/docs/software/create_singularity_container_from_a_singularity_script_on_linux.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<div><h1 id="create-a-singularity-container-from-a-singularity-script-on-a-computer-with-linux-where-you-have-super-user-rights">Create a Singularity container from a Singularity script on a computer with Linux where you have super-user rights<a class="headerlink" href="#create-a-singularity-container-from-a-singularity-script-on-a-computer-with-linux-where-you-have-super-user-rights" title="Anchor link to this section for reference">¶</a></h1>
+<p>There are multiple ways how to <a href="../create_singularity_container/">create a Singularity container</a>.</p>
+<p>This page shows how to do so using a computer with Linux where you have super-user rights.</p>
+<p>Note that users have no super-user rights on our UPPMAX clusters.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Anchor link to this section for reference">¶</a></h2>
+<h3 id="1-save-the-script-to-a-singularity-file">1. Save the script to a Singularity file<a class="headerlink" href="#1-save-the-script-to-a-singularity-file" title="Anchor link to this section for reference">¶</a></h3>
+<p>Save the script as a file called <code>Singularity</code> (this is the recommended filename
+for Singularity scripts).</p>
+<details class="- question">
+<summary>Do you have an example Singularity script?</summary>
+<p>Yes! Here is an example Singularity script:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">Bootstrap</span>:<span class="w"> </span>docker
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">From</span>:<span class="w"> </span>rocker/tidyverse
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="gh">%post</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="c1"># From https://github.com/brucemoran/Singularity/blob/8eb44591284ffb29056d234c47bf8b1473637805/shub/bases/recipe.CentOs7-R_3.5.2#L21</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s1">'export LANG=en_US.UTF-8 LANGUAGE=C LC_ALL=C LC_CTYPE=C LC_COLLATE=C  LC_TIME=C LC_MONETARY=C LC_PAPER=C LC_MEASUREMENT=C'</span><span class="w"> </span>&gt;&gt;<span class="w"> </span><span class="nv">$SINGULARITY_ENVIRONMENT</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span>Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s1">'install.packages(c("remotes", "devtools"))'</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">    </span>Rscript<span class="w"> </span>-e<span class="w"> </span><span class="s1">'remotes::install_github("bmbolstad/preprocessCore")'</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="gh">%runscript</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Rscript<span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
+</code></pre></div>
+</details>
+<h3 id="2-build-the-singularity-container">2. Build the Singularity container<a class="headerlink" href="#2-build-the-singularity-container" title="Anchor link to this section for reference">¶</a></h3>
+<p>Here is how you create a Singularity container called <code>my_container.sif</code> from the Singularity script:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>singularity<span class="w"> </span>build<span class="w"> </span>my_container.sif<span class="w"> </span>Singularity
+</code></pre></div>
+<p>Which will build a Singularity container called <code>my_container.sif</code>.</p>
+<details class="- question">
+<summary>How does that look like?</summary>
+<p>You output will be similar to this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sven@sven-N141CU:~/temp$<span class="w"> </span>sudo<span class="w"> </span>singularity<span class="w"> </span>build<span class="w"> </span>my_container.sif<span class="w"> </span>Singularity<span class="w"> </span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>INFO:<span class="w">    </span>Starting<span class="w"> </span>build...
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>INFO:<span class="w">    </span>Fetching<span class="w"> </span>OCI<span class="w"> </span>image...
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="m">307</span>.6MiB<span class="w"> </span>/<span class="w"> </span><span class="m">307</span>.6MiB<span class="w"> </span><span class="o">[================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="m">30</span>.9MiB<span class="w"> </span>/<span class="w"> </span><span class="m">30</span>.9MiB<span class="w"> </span><span class="o">[==================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="m">28</span>.2MiB<span class="w"> </span>/<span class="w"> </span><span class="m">28</span>.2MiB<span class="w"> </span><span class="o">[==================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="m">261</span>.1MiB<span class="w"> </span>/<span class="w"> </span><span class="m">261</span>.1MiB<span class="w"> </span><span class="o">[================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="m">193</span>.7MiB<span class="w"> </span>/<span class="w"> </span><span class="m">193</span>.7MiB<span class="w"> </span><span class="o">[================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="m">26</span>.3MiB<span class="w"> </span>/<span class="w"> </span><span class="m">26</span>.3MiB<span class="w"> </span><span class="o">[==================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="m">288</span>.7KiB<span class="w"> </span>/<span class="w"> </span><span class="m">288</span>.7KiB<span class="w"> </span><span class="o">[================================================================================================================================================]</span><span class="w"> </span><span class="m">100</span><span class="w"> </span>%<span class="w"> </span><span class="m">0</span>.0<span class="w"> </span>b/s<span class="w"> </span>0s
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>INFO:<span class="w">    </span>Extracting<span class="w"> </span>OCI<span class="w"> </span>image...
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>INFO:<span class="w">    </span>Inserting<span class="w"> </span>Singularity<span class="w"> </span>configuration...
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>INFO:<span class="w">    </span>Running<span class="w"> </span>post<span class="w"> </span>scriptlet
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>+<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">LANG</span><span class="o">=</span>en_US.UTF-8<span class="w"> </span><span class="nv">LANGUAGE</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_ALL</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_CTYPE</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_COLLATE</span><span class="o">=</span>C<span class="w">  </span><span class="nv">LC_TIME</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_MONETARY</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_PAPER</span><span class="o">=</span>C<span class="w"> </span><span class="nv">LC_MEASUREMENT</span><span class="o">=</span>C
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>+<span class="w"> </span>Rscript<span class="w"> </span>-e<span class="w"> </span>install.packages<span class="o">(</span>c<span class="o">(</span><span class="s2">"remotes"</span>,<span class="w"> </span><span class="s2">"devtools"</span><span class="o">))</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>Installing<span class="w"> </span>packages<span class="w"> </span>into<span class="w"> </span>‘/usr/local/lib/R/site-library’
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="o">(</span>as<span class="w"> </span>‘lib’<span class="w"> </span>is<span class="w"> </span>unspecified<span class="o">)</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>trying<span class="w"> </span>URL<span class="w"> </span><span class="s1">'https://p3m.dev/cran/__linux__/jammy/latest/src/contrib/remotes_2.5.0.tar.gz'</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>Content<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">'binary/octet-stream'</span><span class="w"> </span>length<span class="w"> </span><span class="m">436043</span><span class="w"> </span>bytes<span class="w"> </span><span class="o">(</span><span class="m">425</span><span class="w"> </span>KB<span class="o">)</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="o">==================================================</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>downloaded<span class="w"> </span><span class="m">425</span><span class="w"> </span>KB
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>trying<span class="w"> </span>URL<span class="w"> </span><span class="s1">'https://p3m.dev/cran/__linux__/jammy/latest/src/contrib/devtools_2.4.5.tar.gz'</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>Content<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s1">'binary/octet-stream'</span><span class="w"> </span>length<span class="w"> </span><span class="m">435688</span><span class="w"> </span>bytes<span class="w"> </span><span class="o">(</span><span class="m">425</span><span class="w"> </span>KB<span class="o">)</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="o">==================================================</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>downloaded<span class="w"> </span><span class="m">425</span><span class="w"> </span>KB
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>*<span class="w"> </span>installing<span class="w"> </span>*binary*<span class="w"> </span>package<span class="w"> </span>‘remotes’<span class="w"> </span>...
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>*<span class="w"> </span>DONE<span class="w"> </span><span class="o">(</span>remotes<span class="o">)</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>*<span class="w"> </span>installing<span class="w"> </span>*binary*<span class="w"> </span>package<span class="w"> </span>‘devtools’<span class="w"> </span>...
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>*<span class="w"> </span>DONE<span class="w"> </span><span class="o">(</span>devtools<span class="o">)</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>The<span class="w"> </span>downloaded<span class="w"> </span><span class="nb">source</span><span class="w"> </span>packages<span class="w"> </span>are<span class="w"> </span><span class="k">in</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w"> </span>‘/tmp/Rtmpow1CFQ/downloaded_packages’
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>+<span class="w"> </span>Rscript<span class="w"> </span>-e<span class="w"> </span>remotes::install_github<span class="o">(</span><span class="s2">"bmbolstad/preprocessCore"</span><span class="o">)</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>Downloading<span class="w"> </span>GitHub<span class="w"> </span>repo<span class="w"> </span>bmbolstad/preprocessCore@HEAD
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>──<span class="w"> </span>R<span class="w"> </span>CMD<span class="w"> </span>build<span class="w"> </span>────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>✔<span class="w">  </span>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>file<span class="w"> </span>‘/tmp/Rtmpx5C1XE/remotes13a1238df5bce/bmbolstad-preprocessCore-33ccbd9/DESCRIPTION’<span class="w"> </span><span class="o">(</span>337ms<span class="o">)</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>─<span class="w">  </span>preparing<span class="w"> </span>‘preprocessCore’:
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>✔<span class="w">  </span>checking<span class="w"> </span>DESCRIPTION<span class="w"> </span>meta-information<span class="w"> </span>...
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>─<span class="w">  </span>cleaning<span class="w"> </span>src
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>─<span class="w">  </span>running<span class="w"> </span>‘cleanup’
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>─<span class="w">  </span>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>LF<span class="w"> </span>line-endings<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">source</span><span class="w"> </span>and<span class="w"> </span>make<span class="w"> </span>files<span class="w"> </span>and<span class="w"> </span>shell<span class="w"> </span>scripts
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>─<span class="w">  </span>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>empty<span class="w"> </span>or<span class="w"> </span>unneeded<span class="w"> </span>directories
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>─<span class="w">  </span>building<span class="w"> </span>‘preprocessCore_1.61.0.tar.gz’
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>Installing<span class="w"> </span>package<span class="w"> </span>into<span class="w"> </span>‘/usr/local/lib/R/site-library’
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="o">(</span>as<span class="w"> </span>‘lib’<span class="w"> </span>is<span class="w"> </span>unspecified<span class="o">)</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>*<span class="w"> </span>installing<span class="w"> </span>*source*<span class="w"> </span>package<span class="w"> </span>‘preprocessCore’<span class="w"> </span>...
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>**<span class="w"> </span>using<span class="w"> </span>staged<span class="w"> </span>installation
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="s1">'config'</span><span class="w"> </span>variable<span class="w"> </span><span class="s1">'CPP'</span><span class="w"> </span>is<span class="w"> </span>defunct
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>gcc...<span class="w"> </span>gcc
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>checking<span class="w"> </span>whether<span class="w"> </span>the<span class="w"> </span>C<span class="w"> </span>compiler<span class="w"> </span>works...<span class="w"> </span>yes
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>C<span class="w"> </span>compiler<span class="w"> </span>default<span class="w"> </span>output<span class="w"> </span>file<span class="w"> </span>name...<span class="w"> </span>a.out
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>suffix<span class="w"> </span>of<span class="w"> </span>executables...<span class="w"> </span>
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>checking<span class="w"> </span>whether<span class="w"> </span>we<span class="w"> </span>are<span class="w"> </span>cross<span class="w"> </span>compiling...<span class="w"> </span>no
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>suffix<span class="w"> </span>of<span class="w"> </span>object<span class="w"> </span>files...<span class="w"> </span>o
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>checking<span class="w"> </span>whether<span class="w"> </span>we<span class="w"> </span>are<span class="w"> </span>using<span class="w"> </span>the<span class="w"> </span>GNU<span class="w"> </span>C<span class="w"> </span>compiler...<span class="w"> </span>yes
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>checking<span class="w"> </span>whether<span class="w"> </span>gcc<span class="w"> </span>accepts<span class="w"> </span>-g...<span class="w"> </span>yes
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>gcc<span class="w"> </span>option<span class="w"> </span>to<span class="w"> </span>accept<span class="w"> </span>ISO<span class="w"> </span>C89...<span class="w"> </span>none<span class="w"> </span>needed
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>checking<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>the<span class="w"> </span>C<span class="w"> </span>preprocessor...<span class="w"> </span>gcc<span class="w"> </span>-E
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>library<span class="w"> </span>containing<span class="w"> </span>pthread_create...<span class="w"> </span>none<span class="w"> </span>required
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>grep<span class="w"> </span>that<span class="w"> </span>handles<span class="w"> </span>long<span class="w"> </span>lines<span class="w"> </span>and<span class="w"> </span>-e...<span class="w"> </span>/usr/bin/grep
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>egrep...<span class="w"> </span>/usr/bin/grep<span class="w"> </span>-E
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>ANSI<span class="w"> </span>C<span class="w"> </span>header<span class="w"> </span>files...<span class="w"> </span>yes
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>sys/types.h...<span class="w"> </span>yes
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>sys/stat.h...<span class="w"> </span>yes
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>stdlib.h...<span class="w"> </span>yes
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>string.h...<span class="w"> </span>yes
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>memory.h...<span class="w"> </span>yes
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>strings.h...<span class="w"> </span>yes
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>inttypes.h...<span class="w"> </span>yes
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>stdint.h...<span class="w"> </span>yes
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>unistd.h...<span class="w"> </span>yes
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a>checking<span class="w"> </span><span class="k">for</span><span class="w"> </span>stdlib.h...<span class="w"> </span><span class="o">(</span>cached<span class="o">)</span><span class="w"> </span>yes
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>PTHREAD_STACK_MIN<span class="w"> </span>is<span class="w"> </span>defined...<span class="w"> </span>yes
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>checking<span class="w"> </span><span class="k">if</span><span class="w"> </span>R<span class="w"> </span>is<span class="w"> </span>using<span class="w"> </span>flexiblas...<span class="w"> </span>flexiblas<span class="w"> </span>not<span class="w"> </span>found.<span class="w"> </span>preprocessCore<span class="w"> </span>threading<span class="w"> </span>will<span class="w"> </span>not<span class="w"> </span>be<span class="w"> </span>disabled
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>configure:<span class="w"> </span>Enabling<span class="w"> </span>threading<span class="w"> </span><span class="k">for</span><span class="w"> </span>preprocessCore
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a>configure:<span class="w"> </span>creating<span class="w"> </span>./config.status
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>config.status:<span class="w"> </span>creating<span class="w"> </span>src/Makevars
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>**<span class="w"> </span>libs
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>using<span class="w"> </span>C<span class="w"> </span>compiler:<span class="w"> </span>‘gcc<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">11</span>.4.0-1ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">11</span>.4.0’
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_colSummarize.c<span class="w"> </span>-o<span class="w"> </span>R_colSummarize.o
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_plmd_interfaces.c<span class="w"> </span>-o<span class="w"> </span>R_plmd_interfaces.o
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_plmr_interfaces.c<span class="w"> </span>-o<span class="w"> </span>R_plmr_interfaces.o
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_rlm_interfaces.c<span class="w"> </span>-o<span class="w"> </span>R_rlm_interfaces.o
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_subColSummarize.c<span class="w"> </span>-o<span class="w"> </span>R_subColSummarize.o
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>R_subrcModel_interfaces.c<span class="w"> </span>-o<span class="w"> </span>R_subrcModel_interfaces.o
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>avg.c<span class="w"> </span>-o<span class="w"> </span>avg.o
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>avg_log.c<span class="w"> </span>-o<span class="w"> </span>avg_log.o
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>biweight.c<span class="w"> </span>-o<span class="w"> </span>biweight.o
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>init_package.c<span class="w"> </span>-o<span class="w"> </span>init_package.o
+<a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>lm.c<span class="w"> </span>-o<span class="w"> </span>lm.o
+<a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>log_avg.c<span class="w"> </span>-o<span class="w"> </span>log_avg.o
+<a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>log_median.c<span class="w"> </span>-o<span class="w"> </span>log_median.o
+<a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>matrix_functions.c<span class="w"> </span>-o<span class="w"> </span>matrix_functions.o
+<a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>median.c<span class="w"> </span>-o<span class="w"> </span>median.o
+<a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>median_log.c<span class="w"> </span>-o<span class="w"> </span>median_log.o
+<a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>medianpolish.c<span class="w"> </span>-o<span class="w"> </span>medianpolish.o
+<a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>plmd.c<span class="w"> </span>-o<span class="w"> </span>plmd.o
+<a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>plmr.c<span class="w"> </span>-o<span class="w"> </span>plmr.o
+<a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>psi_fns.c<span class="w"> </span>-o<span class="w"> </span>psi_fns.o
+<a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>qnorm.c<span class="w"> </span>-o<span class="w"> </span>qnorm.o
+<a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>qnorm.c:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span>‘qnorm_c_l’:
+<a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>qnorm.c:595:63:<span class="w"> </span>warning:<span class="w"> </span>format<span class="w"> </span>‘%d’<span class="w"> </span>expects<span class="w"> </span>argument<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘int’,<span class="w"> </span>but<span class="w"> </span>argument<span class="w"> </span><span class="m">2</span><span class="w"> </span>has<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘size_t’<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>‘long<span class="w"> </span>unsigned<span class="w"> </span>int’<span class="o">}</span><span class="w"> </span><span class="o">[</span>-Wformat<span class="o">=]</span>
+<a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a><span class="w">  </span><span class="m">595</span><span class="w"> </span><span class="p">|</span><span class="w">          </span>error<span class="o">(</span><span class="s2">"ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n"</span>,
+<a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>~^
+<a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span><span class="p">|</span>
+<a id="__codelineno-2-109" name="__codelineno-2-109" href="#__codelineno-2-109"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span>int
+<a id="__codelineno-2-110" name="__codelineno-2-110" href="#__codelineno-2-110"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>%ld
+<a id="__codelineno-2-111" name="__codelineno-2-111" href="#__codelineno-2-111"></a><span class="w">  </span><span class="m">596</span><span class="w"> </span><span class="p">|</span><span class="w">                </span>i,<span class="w"> </span>returnCode,<span class="w"> </span>*<span class="o">((</span>int<span class="w"> </span>*<span class="o">)</span><span class="w"> </span>status<span class="o">))</span><span class="p">;</span>
+<a id="__codelineno-2-112" name="__codelineno-2-112" href="#__codelineno-2-112"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>~<span class="w">                                               </span>
+<a id="__codelineno-2-113" name="__codelineno-2-113" href="#__codelineno-2-113"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span><span class="p">|</span>
+<a id="__codelineno-2-114" name="__codelineno-2-114" href="#__codelineno-2-114"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>size_t<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>long<span class="w"> </span>unsigned<span class="w"> </span>int<span class="o">}</span>
+<a id="__codelineno-2-115" name="__codelineno-2-115" href="#__codelineno-2-115"></a>qnorm.c:616:63:<span class="w"> </span>warning:<span class="w"> </span>format<span class="w"> </span>‘%d’<span class="w"> </span>expects<span class="w"> </span>argument<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘int’,<span class="w"> </span>but<span class="w"> </span>argument<span class="w"> </span><span class="m">2</span><span class="w"> </span>has<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘size_t’<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>‘long<span class="w"> </span>unsigned<span class="w"> </span>int’<span class="o">}</span><span class="w"> </span><span class="o">[</span>-Wformat<span class="o">=]</span>
+<a id="__codelineno-2-116" name="__codelineno-2-116" href="#__codelineno-2-116"></a><span class="w">  </span><span class="m">616</span><span class="w"> </span><span class="p">|</span><span class="w">          </span>error<span class="o">(</span><span class="s2">"ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n"</span>,
+<a id="__codelineno-2-117" name="__codelineno-2-117" href="#__codelineno-2-117"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>~^
+<a id="__codelineno-2-118" name="__codelineno-2-118" href="#__codelineno-2-118"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span><span class="p">|</span>
+<a id="__codelineno-2-119" name="__codelineno-2-119" href="#__codelineno-2-119"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span>int
+<a id="__codelineno-2-120" name="__codelineno-2-120" href="#__codelineno-2-120"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>%ld
+<a id="__codelineno-2-121" name="__codelineno-2-121" href="#__codelineno-2-121"></a><span class="w">  </span><span class="m">617</span><span class="w"> </span><span class="p">|</span><span class="w">                </span>i,<span class="w"> </span>returnCode,<span class="w"> </span>*<span class="o">((</span>int<span class="w"> </span>*<span class="o">)</span><span class="w"> </span>status<span class="o">))</span><span class="p">;</span>
+<a id="__codelineno-2-122" name="__codelineno-2-122" href="#__codelineno-2-122"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>~<span class="w">                                               </span>
+<a id="__codelineno-2-123" name="__codelineno-2-123" href="#__codelineno-2-123"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span><span class="p">|</span>
+<a id="__codelineno-2-124" name="__codelineno-2-124" href="#__codelineno-2-124"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>size_t<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>long<span class="w"> </span>unsigned<span class="w"> </span>int<span class="o">}</span>
+<a id="__codelineno-2-125" name="__codelineno-2-125" href="#__codelineno-2-125"></a>qnorm.c:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span>‘qnorm_c_determine_target_l’:
+<a id="__codelineno-2-126" name="__codelineno-2-126" href="#__codelineno-2-126"></a>qnorm.c:2004:63:<span class="w"> </span>warning:<span class="w"> </span>format<span class="w"> </span>‘%d’<span class="w"> </span>expects<span class="w"> </span>argument<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘int’,<span class="w"> </span>but<span class="w"> </span>argument<span class="w"> </span><span class="m">2</span><span class="w"> </span>has<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘size_t’<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>‘long<span class="w"> </span>unsigned<span class="w"> </span>int’<span class="o">}</span><span class="w"> </span><span class="o">[</span>-Wformat<span class="o">=]</span>
+<a id="__codelineno-2-127" name="__codelineno-2-127" href="#__codelineno-2-127"></a><span class="w"> </span><span class="m">2004</span><span class="w"> </span><span class="p">|</span><span class="w">          </span>error<span class="o">(</span><span class="s2">"ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n"</span>,
+<a id="__codelineno-2-128" name="__codelineno-2-128" href="#__codelineno-2-128"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>~^
+<a id="__codelineno-2-129" name="__codelineno-2-129" href="#__codelineno-2-129"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span><span class="p">|</span>
+<a id="__codelineno-2-130" name="__codelineno-2-130" href="#__codelineno-2-130"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span>int
+<a id="__codelineno-2-131" name="__codelineno-2-131" href="#__codelineno-2-131"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>%ld
+<a id="__codelineno-2-132" name="__codelineno-2-132" href="#__codelineno-2-132"></a><span class="w"> </span><span class="m">2005</span><span class="w"> </span><span class="p">|</span><span class="w">                </span>i,<span class="w"> </span>returnCode,<span class="w"> </span>*<span class="o">((</span>int<span class="w"> </span>*<span class="o">)</span><span class="w"> </span>status<span class="o">))</span><span class="p">;</span>
+<a id="__codelineno-2-133" name="__codelineno-2-133" href="#__codelineno-2-133"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>~<span class="w">                                               </span>
+<a id="__codelineno-2-134" name="__codelineno-2-134" href="#__codelineno-2-134"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span><span class="p">|</span>
+<a id="__codelineno-2-135" name="__codelineno-2-135" href="#__codelineno-2-135"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>size_t<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>long<span class="w"> </span>unsigned<span class="w"> </span>int<span class="o">}</span>
+<a id="__codelineno-2-136" name="__codelineno-2-136" href="#__codelineno-2-136"></a>qnorm.c:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span>‘qnorm_c_determine_target_via_subset_l’:
+<a id="__codelineno-2-137" name="__codelineno-2-137" href="#__codelineno-2-137"></a>qnorm.c:2604:63:<span class="w"> </span>warning:<span class="w"> </span>format<span class="w"> </span>‘%d’<span class="w"> </span>expects<span class="w"> </span>argument<span class="w"> </span>of<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘int’,<span class="w"> </span>but<span class="w"> </span>argument<span class="w"> </span><span class="m">2</span><span class="w"> </span>has<span class="w"> </span><span class="nb">type</span><span class="w"> </span>‘size_t’<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>‘long<span class="w"> </span>unsigned<span class="w"> </span>int’<span class="o">}</span><span class="w"> </span><span class="o">[</span>-Wformat<span class="o">=]</span>
+<a id="__codelineno-2-138" name="__codelineno-2-138" href="#__codelineno-2-138"></a><span class="w"> </span><span class="m">2604</span><span class="w"> </span><span class="p">|</span><span class="w">          </span>error<span class="o">(</span><span class="s2">"ERROR; return code from pthread_join(thread #%d) is %d, exit status for thread was %d\n"</span>,
+<a id="__codelineno-2-139" name="__codelineno-2-139" href="#__codelineno-2-139"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>~^
+<a id="__codelineno-2-140" name="__codelineno-2-140" href="#__codelineno-2-140"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span><span class="p">|</span>
+<a id="__codelineno-2-141" name="__codelineno-2-141" href="#__codelineno-2-141"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                               </span>int
+<a id="__codelineno-2-142" name="__codelineno-2-142" href="#__codelineno-2-142"></a><span class="w">      </span><span class="p">|</span><span class="w">                                                              </span>%ld
+<a id="__codelineno-2-143" name="__codelineno-2-143" href="#__codelineno-2-143"></a><span class="w"> </span><span class="m">2605</span><span class="w"> </span><span class="p">|</span><span class="w">                </span>i,<span class="w"> </span>returnCode,<span class="w"> </span>*<span class="o">((</span>int<span class="w"> </span>*<span class="o">)</span><span class="w"> </span>status<span class="o">))</span><span class="p">;</span>
+<a id="__codelineno-2-144" name="__codelineno-2-144" href="#__codelineno-2-144"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>~<span class="w">                                               </span>
+<a id="__codelineno-2-145" name="__codelineno-2-145" href="#__codelineno-2-145"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span><span class="p">|</span>
+<a id="__codelineno-2-146" name="__codelineno-2-146" href="#__codelineno-2-146"></a><span class="w">      </span><span class="p">|</span><span class="w">                </span>size_t<span class="w"> </span><span class="o">{</span>aka<span class="w"> </span>long<span class="w"> </span>unsigned<span class="w"> </span>int<span class="o">}</span>
+<a id="__codelineno-2-147" name="__codelineno-2-147" href="#__codelineno-2-147"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>rlm.c<span class="w"> </span>-o<span class="w"> </span>rlm.o
+<a id="__codelineno-2-148" name="__codelineno-2-148" href="#__codelineno-2-148"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>rlm_anova.c<span class="w"> </span>-o<span class="w"> </span>rlm_anova.o
+<a id="__codelineno-2-149" name="__codelineno-2-149" href="#__codelineno-2-149"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>rlm_se.c<span class="w"> </span>-o<span class="w"> </span>rlm_se.o
+<a id="__codelineno-2-150" name="__codelineno-2-150" href="#__codelineno-2-150"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>rma_background4.c<span class="w"> </span>-o<span class="w"> </span>rma_background4.o
+<a id="__codelineno-2-151" name="__codelineno-2-151" href="#__codelineno-2-151"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>rma_common.c<span class="w"> </span>-o<span class="w"> </span>rma_common.o
+<a id="__codelineno-2-152" name="__codelineno-2-152" href="#__codelineno-2-152"></a>gcc<span class="w"> </span>-I<span class="s2">"/usr/local/lib/R/include"</span><span class="w"> </span>-DNDEBUG<span class="w"> </span>-I/usr/local/include<span class="w">  </span>-I/usr/local/include<span class="w">   </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-DPACKAGE_NAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_TARNAME<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_VERSION<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_STRING<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_BUGREPORT<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DPACKAGE_URL<span class="o">=</span><span class="se">\"\"</span><span class="w"> </span>-DSTDC_HEADERS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_TYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_SYS_STAT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRING_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_MEMORY_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STRINGS_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_INTTYPES_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDINT_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_UNISTD_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DHAVE_STDLIB_H<span class="o">=</span><span class="m">1</span><span class="w"> </span>-DUSE_PTHREADS<span class="o">=</span><span class="m">1</span><span class="w"> </span>-fpic<span class="w">  </span>-g<span class="w"> </span>-O2<span class="w"> </span>-fstack-protector-strong<span class="w"> </span>-Wformat<span class="w"> </span>-Werror<span class="o">=</span>format-security<span class="w"> </span>-Wdate-time<span class="w"> </span>-D_FORTIFY_SOURCE<span class="o">=</span><span class="m">2</span><span class="w"> </span>-g<span class="w">  </span>-c<span class="w"> </span>weightedkerneldensity.c<span class="w"> </span>-o<span class="w"> </span>weightedkerneldensity.o
+<a id="__codelineno-2-153" name="__codelineno-2-153" href="#__codelineno-2-153"></a>gcc<span class="w"> </span>-shared<span class="w"> </span>-L/usr/local/lib/R/lib<span class="w"> </span>-L/usr/local/lib<span class="w"> </span>-o<span class="w"> </span>preprocessCore.so<span class="w"> </span>R_colSummarize.o<span class="w"> </span>R_plmd_interfaces.o<span class="w"> </span>R_plmr_interfaces.o<span class="w"> </span>R_rlm_interfaces.o<span class="w"> </span>R_subColSummarize.o<span class="w"> </span>R_subrcModel_interfaces.o<span class="w"> </span>avg.o<span class="w"> </span>avg_log.o<span class="w"> </span>biweight.o<span class="w"> </span>init_package.o<span class="w"> </span>lm.o<span class="w"> </span>log_avg.o<span class="w"> </span>log_median.o<span class="w"> </span>matrix_functions.o<span class="w"> </span>median.o<span class="w"> </span>median_log.o<span class="w"> </span>medianpolish.o<span class="w"> </span>plmd.o<span class="w"> </span>plmr.o<span class="w"> </span>psi_fns.o<span class="w"> </span>qnorm.o<span class="w"> </span>rlm.o<span class="w"> </span>rlm_anova.o<span class="w"> </span>rlm_se.o<span class="w"> </span>rma_background4.o<span class="w"> </span>rma_common.o<span class="w"> </span>weightedkerneldensity.o<span class="w"> </span>-llapack<span class="w"> </span>-lblas<span class="w"> </span>-lgfortran<span class="w"> </span>-lm<span class="w"> </span>-lquadmath<span class="w"> </span>-L/usr/local/lib/R/lib<span class="w"> </span>-lR
+<a id="__codelineno-2-154" name="__codelineno-2-154" href="#__codelineno-2-154"></a>installing<span class="w"> </span>to<span class="w"> </span>/usr/local/lib/R/site-library/00LOCK-preprocessCore/00new/preprocessCore/libs
+<a id="__codelineno-2-155" name="__codelineno-2-155" href="#__codelineno-2-155"></a>**<span class="w"> </span>R
+<a id="__codelineno-2-156" name="__codelineno-2-156" href="#__codelineno-2-156"></a>**<span class="w"> </span>inst
+<a id="__codelineno-2-157" name="__codelineno-2-157" href="#__codelineno-2-157"></a>**<span class="w"> </span>byte-compile<span class="w"> </span>and<span class="w"> </span>prepare<span class="w"> </span>package<span class="w"> </span><span class="k">for</span><span class="w"> </span>lazy<span class="w"> </span>loading
+<a id="__codelineno-2-158" name="__codelineno-2-158" href="#__codelineno-2-158"></a>**<span class="w"> </span><span class="nb">help</span>
+<a id="__codelineno-2-159" name="__codelineno-2-159" href="#__codelineno-2-159"></a>***<span class="w"> </span>installing<span class="w"> </span><span class="nb">help</span><span class="w"> </span>indices
+<a id="__codelineno-2-160" name="__codelineno-2-160" href="#__codelineno-2-160"></a>**<span class="w"> </span>building<span class="w"> </span>package<span class="w"> </span>indices
+<a id="__codelineno-2-161" name="__codelineno-2-161" href="#__codelineno-2-161"></a>**<span class="w"> </span>testing<span class="w"> </span><span class="k">if</span><span class="w"> </span>installed<span class="w"> </span>package<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>temporary<span class="w"> </span>location
+<a id="__codelineno-2-162" name="__codelineno-2-162" href="#__codelineno-2-162"></a>**<span class="w"> </span>checking<span class="w"> </span>absolute<span class="w"> </span>paths<span class="w"> </span><span class="k">in</span><span class="w"> </span>shared<span class="w"> </span>objects<span class="w"> </span>and<span class="w"> </span>dynamic<span class="w"> </span>libraries
+<a id="__codelineno-2-163" name="__codelineno-2-163" href="#__codelineno-2-163"></a>**<span class="w"> </span>testing<span class="w"> </span><span class="k">if</span><span class="w"> </span>installed<span class="w"> </span>package<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>loaded<span class="w"> </span>from<span class="w"> </span>final<span class="w"> </span>location
+<a id="__codelineno-2-164" name="__codelineno-2-164" href="#__codelineno-2-164"></a>**<span class="w"> </span>testing<span class="w"> </span><span class="k">if</span><span class="w"> </span>installed<span class="w"> </span>package<span class="w"> </span>keeps<span class="w"> </span>a<span class="w"> </span>record<span class="w"> </span>of<span class="w"> </span>temporary<span class="w"> </span>installation<span class="w"> </span>path
+<a id="__codelineno-2-165" name="__codelineno-2-165" href="#__codelineno-2-165"></a>*<span class="w"> </span>DONE<span class="w"> </span><span class="o">(</span>preprocessCore<span class="o">)</span>
+<a id="__codelineno-2-166" name="__codelineno-2-166" href="#__codelineno-2-166"></a>INFO:<span class="w">    </span>Adding<span class="w"> </span>runscript
+<a id="__codelineno-2-167" name="__codelineno-2-167" href="#__codelineno-2-167"></a>INFO:<span class="w">    </span>Creating<span class="w"> </span>SIF<span class="w"> </span>file...
+<a id="__codelineno-2-168" name="__codelineno-2-168" href="#__codelineno-2-168"></a>INFO:<span class="w">    </span>Build<span class="w"> </span>complete:<span class="w"> </span>my_container.sif
+</code></pre></div>
+</details>
+<h3 id="3-use-the-container">3. Use the container<a class="headerlink" href="#3-use-the-container" title="Anchor link to this section for reference">¶</a></h3>
+<p>How to use a container, depends on what it does.</p>
+<p>Here are some thing to try:</p>
+<p>Run the container without arguments, in the hope of getting a clear error message with instructions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./my_container.sif
+</code></pre></div>
+<p>Run the container in the hope of seeing its documentation:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./my_container.sif<span class="w"> </span>--help
+</code></pre></div>
+<p>Run the container on the local folder, in the hope of getting a clear error message with instructions:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./my_container.sif<span class="w"> </span>.
+</code></pre></div></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <!-- <footer class="md-footer"> -->
+<!--   <div class="md-footer-meta md-typeset"> -->
+<!--     <div class="md-footer-meta__inner md-grid"> -->
+<!--       <div > -->
+<!--         <h2>Contact UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Support: <a href="mailto:support@uppmax.uu.se">support@uppmax.uu.se</a></li> -->
+<!--             <li>Director: <a href="http://katalog.uu.se/profile/?id=N94-2143">Elisabeth Larsson</a></li> -->
+<!--             <li>Economy: <a href="http://katalog.uu.se/empinfo/?id=N18-298">Wiola &Ouml;hlund</a></li> -->
+<!--             <li>Post: P.O. Box 337, 751 05 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div > -->
+<!--         <h2>Visit UPPMAX</h2> -->
+<!--         <div> -->
+<!--           <ul> -->
+<!--             <li>Floor 3, House 10, &Aring;ngstr&ouml;m Laboratory</li> -->
+<!--             <li>L&auml;gerhyddsv&auml;gen 1</li> -->
+<!--             <li>752 37 Uppsala</li> -->
+<!--           </ul> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--       <div> -->
+<!--         <h2>Shortcuts</h2> -->
+<!--         <div> -->
+<!--           <p style="text-align:start"><a href="/support/getting-started/">Apply for a project&nbsp;or user account</a> -->
+<!--           </p> -->
+<!--           <p style="text-align:start"><a href="/support/faq/">FAQ</a></p> -->
+<!--           <p style="text-align:start"><a href="/support/user-guides/">User Guides</a></p> -->
+<!--           <p style="text-align:start"><a href="/resources/software/installed-software/">List of Installed Software</a> -->
+<!--           </p> -->
+<!--         </div> -->
+<!--       </div> -->
+<!--     </div> -->
+<!--   </div> -->
+<!---->
+<!-- </footer> -->
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.footer", "search.suggest", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
